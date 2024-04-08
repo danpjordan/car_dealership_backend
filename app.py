@@ -1,3 +1,4 @@
+import random
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -5,30 +6,42 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-# Set up the SQLAlchemy configuration for the PostgreSQL database
-# Replace the sensitive information with environment variables in production
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:[password]@localhost:5433/car-dealership'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:6569@localhost:5433/car-dealership'
 db = SQLAlchemy(app)
 CORS(app)
 
-# Define the Employees model
 class Employee(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    role = db.Column(db.String(100), nullable=False)
-    imageUrl = db.Column(db.String(400), nullable=False)
-    xUrl = db.Column(db.String(400))
-    linkedinUrl = db.Column(db.String(400))
+    role = db.Column(db.String(100), nullable=False, default="Car Salesman")
+    imageUrl = db.Column(db.String(400), nullable=False, default="https://i.imgur.com/0S7YILp.jpeg")
+    xUrl = db.Column(db.String(400), default="https://twitter.com")
+    linkedinUrl = db.Column(db.String(400), default="https://www.linkedin.com")
+    timeCreated = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     def __repr__(self):
         return f"Employee: {self.name}"
 
-    def __init__(self, name, role="Car salesperson", imageUrl="static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg", xUrl="twitter.com", linkedinUrl="linkedin.com"):
-        self.name = name;
-        self.role = role;
-        self.imageUrl = imageUrl;
-        self.xUrl = xUrl;
-        self.linkedinUrl = linkedinUrl;
+    def __init__(self, name, role=None, imageUrl=None, xUrl=None, linkedinUrl=None, timeCreated=None):
+        self.id = self.generate_unique_id()
+        self.name = name
+        if role is not None:
+            self.role = role
+        if imageUrl is not None:
+            self.imageUrl = imageUrl
+        if xUrl is not None:
+            self.xUrl = xUrl
+        if linkedinUrl is not None:
+            self.linkedinUrl = linkedinUrl
+        if timeCreated is not None:
+            self.timeCreated = timeCreated
+        
+    def generate_unique_id(self):
+        while True:
+            random_id = random.randint(100000, 999999)
+            is_employee = Employee.query.filter_by(id=random_id).first()
+            if not is_employee:
+                return random_id
 
 # get single employee
 @app.route('/employees/<id>', methods = ['GET'])
@@ -57,6 +70,7 @@ def update_employee(id):
   employee.imageUrl = data.get('imageUrl', employee.imageUrl)
   employee.xUrl = data.get('xUrl', employee.xUrl)
   employee.linkedinUrl = data.get('linkedinUrl', employee.linkedinUrl)
+  employee.timeCreated = data.get('timeCreated', employee.timeCreated)
 
   db.session.commit()
   return {'Employees': format(employee)}
@@ -69,10 +83,11 @@ def format_employee(employee):
     "role": employee.role,
     "imageUrl": employee.imageUrl,
     "xUrl": employee.xUrl,
-    "linkedinUrl": employee.linkedinUrl
+    "linkedinUrl": employee.linkedinUrl,
+    "timeCreated" : employee.timeCreated
   }
 
-# Define a route for testing
+# define a route for testing
 @app.route('/')
 def hello():
     return "Hey!"
@@ -80,21 +95,33 @@ def hello():
 # create an employee
 @app.route('/employees', methods = ['POST'])
 def create_employee():
-  name = request.json['name']
-  role = request.json['role']
-  imageUrl = request.json['imageUrl']
-  xUrl = request.json['xUrl']
-  linkedinUrl = request.json['linkedinUrl']
   
-  employee = Employee(name, role, imageUrl, xUrl, linkedinUrl)
+  data = request.json
+  if ('name') not in data:
+    return jsonify({'error': 'name attribute not provided'}), 400
+  
+  name = data.get('name')
+  role = data.get('role')
+  imageUrl = data.get('imageUrl')
+  xUrl = data.get('xUrl')
+  linkedinUrl = data.get('linkedinUrl')
+  timeCreated = data.get('timeCreated')
+  
+  employee = Employee(name, role, imageUrl, xUrl, linkedinUrl, timeCreated)
   db.session.add(employee)
-  db.session.commit()
-  return format_employee(employee)
+  try:
+    db.session.commit()
+    return format_employee(employee)
+  except Exception as e:
+    db.session.rollback()
+    return jsonify({'error': 'Error on create_employee()', 'details': str(e)}), 500
+  finally:
+    db.session.close()
 
-#get all employees
+# get all employees
 @app.route('/employees', methods = ['GET'])
 def get_employees():
-  employees = Employee.query.order_by(Employee.id.asc()).all()
+  employees = Employee.query.order_by(Employee.timeCreated).all()
   employees_list = []
   for employee in employees:
     employees_list.append(format_employee(employee))
@@ -102,9 +129,7 @@ def get_employees():
   
 
 if __name__ == '__main__':
-    # Create the database tables based on the defined models
     with app.app_context():
       db.create_all()
 
-    # Run the Flask application
     app.run(port=8000)
