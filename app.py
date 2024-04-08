@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Set up the SQLAlchemy configuration for the PostgreSQL database
 # Replace the sensitive information with environment variables in production
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:6569@localhost:5433/car-dealership'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:[password]@localhost:5433/car-dealership'
 db = SQLAlchemy(app)
 CORS(app)
 
