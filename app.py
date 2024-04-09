@@ -141,10 +141,10 @@ def get_employees():
 class Car(db.Model):
   id = db.Column(db.INTEGER, primary_key=True)
   vin = db.Column(db.VARCHAR(17), nullable=False)
-  imageUrl = db.Column(db.VARCHAR(400), nullable=False, default="https://i.imgur.com/BBtjbgI.jpg")
   make = db.Column(db.VARCHAR(100), nullable=False, default="Contact dealership")
   model = db.Column(db.VARCHAR(100), nullable=False, default="Contact dealership")
   year = db.Column(db.INTEGER, nullable=False, default=0)
+  imageUrl = db.Column(db.VARCHAR(400), nullable=False, default="https://i.imgur.com/BBtjbgI.jpg")
   price = db.Column(db.DECIMAL(8,2), nullable=False, default=0)
   miles = db.Column(db.INTEGER, nullable=False, default=0)
   description = db.Column(db.VARCHAR(2000), nullable=False, default="Contact dealership")
@@ -187,8 +187,8 @@ def format_car(car):
     "vin" : car.vin,
     "make" : car.make,
     "model" : car.model,
-    "imageUrl" : car.imageUrl,
     "year" : car.year,
+    "imageUrl" : car.imageUrl,
     "price" : car.price,
     "miles" : car.miles,
     "description" : car.description,
@@ -205,8 +205,8 @@ def create_car():
   vin = data.get('vin')
   make = data.get('make')
   model = data.get('model')
-  imageUrl = data.get('imageUrl')
   year = data.get('year')
+  imageUrl = data.get('imageUrl')
   price = data.get('price')
   miles = data.get('miles')
   description = data.get('description')
@@ -258,8 +258,8 @@ def update_car(id):
   car.vin = data.get('vin', car.vin)
   car.make = data.get('make', car.make)
   car.model = data.get('model', car.model)
-  car.imageUrl = data.get('imageUrl', car.imageUrl)
   car.year = data.get('year', car.year)
+  car.imageUrl = data.get('imageUrl', car.imageUrl)
   car.price = data.get('price', car.price)
   car.miles = data.get('miles', car.miles)
   car.description = data.get('description', car.description)
