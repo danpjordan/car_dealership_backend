@@ -56,7 +56,7 @@ def format_employee(employee):
   }
   
 # create an employee
-@app.route('/employees', methods = ['POST'])
+@app.route('/employees/', methods = ['POST'])
 def create_employee():
   data = request.json
   if ('name') not in data:
@@ -82,8 +82,7 @@ def create_employee():
     db.session.close()
 
 # delete an employee
-@app.route('/employees/<id>', methods = ['DELETE'])
-
+@app.route('/employees/<id>/', methods = ['DELETE'])
 def delete_employee(id):
   employee = db.session.get(Employee, id)
   if not employee:
@@ -98,7 +97,7 @@ def delete_employee(id):
     db.session.close()
 
 # get single employee
-@app.route('/employees/<id>', methods = ['GET'])
+@app.route('/employees/<id>/', methods = ['GET'])
 def get_employee(id):
   employee = db.session.get(Employee, id)
   if not employee:
@@ -107,7 +106,7 @@ def get_employee(id):
   return {'employee': format_employee(employee)}
 
 # edit an employee
-@app.route('/employees/<id>', methods = ['PUT'])
+@app.route('/employees/<id>/', methods = ['PUT'])
 def update_employee(id):
   employee = db.session.get(Employee, id)
   if not employee:
@@ -130,7 +129,7 @@ def update_employee(id):
     db.session.close()
 
 # get all employees
-@app.route('/employees', methods = ['GET'])
+@app.route('/employees/', methods = ['GET'])
 def get_employees():
   employees = Employee.query.order_by(Employee.timeCreated).all()
   employees_list = []
@@ -196,7 +195,7 @@ def format_car(car):
   }
 
 # create a car
-@app.route('/cars', methods = ['POST'])
+@app.route('/cars/', methods = ['POST'])
 def create_car():
   data = request.json
   if ('vin') not in data:
@@ -224,7 +223,7 @@ def create_car():
     db.session.close()
   
 # delete a car
-@app.route('/cars/<id>', methods = ['DELETE'])
+@app.route('/cars/<id>/', methods = ['DELETE'])
 def delete_car(id):
   car = db.session.get(Car, id)
   if not car:
@@ -239,7 +238,7 @@ def delete_car(id):
     db.session.close()
 
 # get single car
-@app.route('/cars/<id>', methods = ['GET'])
+@app.route('/cars/<id>/', methods = ['GET'])
 def get_car(id):
   car = db.session.get(Car, id)
   if not car:
@@ -248,7 +247,7 @@ def get_car(id):
   return {'car': format_car(car)}
 
 # edit a car
-@app.route('/cars/<id>', methods = ['PUT'])
+@app.route('/cars/<id>/', methods = ['PUT'])
 def update_car(id):
   car = db.session.get(Car, id)
   if not car:
@@ -274,7 +273,7 @@ def update_car(id):
     db.session.close()
   
 # get all employees
-@app.route('/cars', methods = ['GET'])
+@app.route('/cars/', methods = ['GET'])
 def get_cars():
   cars = Car.query.order_by(Car.timeCreated.asc()).all()
   cars_list = []
@@ -290,5 +289,4 @@ def hello():
 if __name__ == '__main__':
   with app.app_context():
     db.create_all()
-  
   app.run(port=8000)
