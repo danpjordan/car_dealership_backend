@@ -140,7 +140,7 @@ def get_employees():
 
 class Car(db.Model):
   id = db.Column(db.INTEGER, primary_key=True)
-  vim = db.Column(db.VARCHAR(17), nullable=False)
+  vin = db.Column(db.VARCHAR(17), nullable=False)
   imageUrl = db.Column(db.VARCHAR(400), nullable=False, default="https://i.imgur.com/BBtjbgI.jpg")
   make = db.Column(db.VARCHAR(100), nullable=False, default="Contact dealership")
   model = db.Column(db.VARCHAR(100), nullable=False, default="Contact dealership")
@@ -153,9 +153,9 @@ class Car(db.Model):
   def __repr__(self):
     return f"Car: {self.model} {self.make} {self.year}"
 
-  def __init__(self, vim, imageUrl, make=None, model=None, year=None, price=None, miles=None, description=None, timeCreated=None):
+  def __init__(self, vin, imageUrl, make=None, model=None, year=None, price=None, miles=None, description=None, timeCreated=None):
       self.id = self.generate_unique_id()
-      self.vim = vim
+      self.vin = vin
       if imageUrl is not None:
           self.imageUrl = imageUrl
       if make is not None:
@@ -184,7 +184,7 @@ class Car(db.Model):
 def format_car(car):
   return {
     "id" : car.id,
-    "vim" : car.vim,
+    "vin" : car.vin,
     "make" : car.make,
     "model" : car.model,
     "imageUrl" : car.imageUrl,
@@ -199,10 +199,10 @@ def format_car(car):
 @app.route('/cars', methods = ['POST'])
 def create_car():
   data = request.json
-  if ('vim') not in data:
-    return jsonify({'error': 'vim attribute not provided'}), 400
+  if ('vin') not in data:
+    return jsonify({'error': 'vin attribute not provided'}), 400
   
-  vim = data.get('vim')
+  vin = data.get('vin')
   make = data.get('make')
   model = data.get('model')
   imageUrl = data.get('imageUrl')
@@ -211,7 +211,7 @@ def create_car():
   miles = data.get('miles')
   description = data.get('description')
   
-  car = Car(vim, imageUrl, make, model, year, price, miles, description)
+  car = Car(vin, imageUrl, make, model, year, price, miles, description)
   db.session.add(car)
   
   try:
@@ -255,7 +255,7 @@ def update_car(id):
     return jsonify({"error": "Car not found"}), 404
 
   data = request.json
-  car.vim = data.get('vim', car.vim)
+  car.vin = data.get('vin', car.vin)
   car.make = data.get('make', car.make)
   car.model = data.get('model', car.model)
   car.imageUrl = data.get('imageUrl', car.imageUrl)
