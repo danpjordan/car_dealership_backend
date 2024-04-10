@@ -6,7 +6,15 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:6569@localhost:5433/car-dealership'
+POSTGRES={
+    'user':'postgres',
+    'pw':'6569',
+    'db':'car-dealership',
+    'host':'localhost',
+    'port':'5433'
+}
+
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s'%POSTGRES
 db = SQLAlchemy(app)
 CORS(app)
 
@@ -280,6 +288,9 @@ def get_cars():
   for car in cars:
     cars_list.append(format_car(car))
   return {'cars': cars_list}
+
+
+
 
 # define a route for testing
 @app.route('/')
