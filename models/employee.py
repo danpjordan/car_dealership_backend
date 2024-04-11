@@ -14,23 +14,34 @@ class Employee(db.Model):
   def __repr__(self):
     return f"Employee: {self.name}"
 
-  def __init__(self, name, role=None, imageUrl=None, xUrl=None, linkedinUrl=None, timeCreated=None):
-      self.id = self.generate_unique_id()
-      self.name = name
-      if role is not None:
-          self.role = role
-      if imageUrl is not None:
-          self.imageUrl = imageUrl
-      if xUrl is not None:
-          self.xUrl = xUrl
-      if linkedinUrl is not None:
-          self.linkedinUrl = linkedinUrl
-      if timeCreated is not None:
-          self.timeCreated = timeCreated
+  def __init__(self, name, role=None, imageUrl=None, xUrl=None, linkedinUrl=None):
+    self.id = self.generate_unique_id()
+    self.name = name
+    self.timeCreated = datetime.now()
+    if role is not None:
+      self.role = role
+    if imageUrl is not None:
+      self.imageUrl = imageUrl
+    if xUrl is not None:
+      self.xUrl = xUrl
+    if linkedinUrl is not None:
+      self.linkedinUrl = linkedinUrl
       
   def generate_unique_id(self):
-      while True:
-          random_id = random.randint(100000, 999999)
-          is_employee = Employee.query.filter_by(id=random_id).first()
-          if not is_employee:
-              return random_id
+    while True:
+      random_id = random.randint(100000, 999999)
+      is_employee = Employee.query.filter_by(id=random_id).first()
+      if not is_employee:
+        return random_id
+
+
+def format_employee(employee):
+  return {
+    "name" : employee.name,
+    "id": employee.id,
+    "role": employee.role,
+    "imageUrl": employee.imageUrl,
+    "xUrl": employee.xUrl,
+    "linkedinUrl": employee.linkedinUrl,
+    "timeCreated" : employee.timeCreated
+  }

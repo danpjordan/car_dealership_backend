@@ -1,20 +1,11 @@
 from flask import jsonify, request
-from models.employee import Employee
-from models.car import Car
+from models.employee import Employee, format_employee
+from models.car import *
+from models.user import *
+from authentication.auth import *
+
 from app import app, db
 
-# format employees
-def format_employee(employee):
-  return {
-    "name" : employee.name,
-    "id": employee.id,
-    "role": employee.role,
-    "imageUrl": employee.imageUrl,
-    "xUrl": employee.xUrl,
-    "linkedinUrl": employee.linkedinUrl,
-    "timeCreated" : employee.timeCreated
-  }
-  
 # create an employee
 @app.route('/employees/', methods = ['POST'])
 def create_employee():
@@ -27,9 +18,8 @@ def create_employee():
   imageUrl = data.get('imageUrl')
   xUrl = data.get('xUrl')
   linkedinUrl = data.get('linkedinUrl')
-  timeCreated = data.get('timeCreated')
   
-  employee = Employee(name, role, imageUrl, xUrl, linkedinUrl, timeCreated)
+  employee = Employee(name, role, imageUrl, xUrl, linkedinUrl)
   db.session.add(employee)
   
   try:
@@ -82,7 +72,7 @@ def update_employee(id):
 
   try:
     db.session.commit()
-    return {'': format(employee)}
+    return {'employee': format_employee(employee)}
   except Exception as e:
     return jsonify({'error': 'Error in edit_employee()', 'details': str(e)}), 500
   finally:
@@ -96,21 +86,6 @@ def get_employees():
   for employee in employees:
     employees_list.append(format_employee(employee))
   return {'employees': employees_list}
-
-# format car
-def format_car(car):
-  return {
-    "id" : car.id,
-    "vin" : car.vin,
-    "make" : car.make,
-    "model" : car.model,
-    "year" : car.year,
-    "imageUrl" : car.imageUrl,
-    "price" : car.price,
-    "miles" : car.miles,
-    "description" : car.description,
-    "timeCreated" : car.timeCreated
-  }
 
 # create a car
 @app.route('/cars/', methods = ['POST'])
@@ -199,6 +174,81 @@ def get_cars():
     cars_list.append(format_car(car))
   return {'cars': cars_list}
 
+@app.route('/adminpage/', methods = ['GET'])
+@user_middleware(['admin'])
+def helloA():
+  return "Hello admin!"
+
+@app.route('/employeepage/', methods = ['GET'])
+@user_middleware(['admin', 'employee'])
+def helloE():
+  return "Hello employee!"
+
+@app.route('/customerpage/', methods = ['GET'])
+@user_middleware(['admin', 'employee', 'customer'])
+def helloC():
+  return "Hello customer!"
+
+@app.route('/login/', methods = ['POST'])
+def login():
+  user=None
+  try:
+    username = request.json.get('username')
+    user=User.query.filter(
+        User.username==username,
+        User.active_status=='Y'
+        ).first()
+    if not user:
+      return jsonify({'error': 'user not found'}, 200)
+    if not bcrypt.checkpw(
+      request.json.get('password').encode('utf-8'),
+      user.password.encode('utf-8')
+    ):
+      return jsonify({'error': 'invalid password'}, 200)
+    
+  except Exception as e:
+    return jsonify({'error': 'unsuccessful login', 'details': str(e)}), 400
+  
+  print("success")
+  
+  try:
+    token = createToken(user)
+    return setCookie(token)
+  except Exception as e:
+    return jsonify({'error': 'failed to create token', 'details': str(e)}), 400
+
+@app.route('/logout/', methods = ['GET'])
+def logout():
+  try:
+    return removeCookie()
+
+  except Exception as e:
+    return jsonify({'error': 'logout unsuccessful', 'details': str(e)}), 400
+
+@app.route('/users', methods = ['POST'])
+def create_user():
+  data = request.json
+  
+  if ('username') not in data:
+    return jsonify({'error': 'username not provided'}), 400
+  if ('password') not in data:
+    return jsonify({'error': 'password not provided'}), 400
+   
+  username = data.get('username')
+  role = data.get('role')
+  password = data.get('password')
+  user = User(username, password, role)
+  
+  db.session.add(user)
+
+  try:
+    db.session.commit()
+    return format_user(user)
+  except Exception as e:
+    db.session.rollback()
+    return jsonify({'error': 'Error in create_employee()', 'details': str(e)}), 500
+  finally:
+    db.session.close()
 
 # define a route for testing
 @app.route('/')
