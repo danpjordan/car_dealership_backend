@@ -13,4 +13,5 @@ pip install -r requirements.txt
 idk just figure it out
 
 4) start database
-run app.py
+python3 main.py
+

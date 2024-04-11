@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import jsonify, request
 from models.employee import Employee
 from models.car import Car
 from app import app, db
@@ -204,4 +204,3 @@ def get_cars():
 @app.route('/')
 def hello():
   return "Shhh, ur not supposed to be here!"
-

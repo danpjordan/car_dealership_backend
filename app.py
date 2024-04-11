@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
@@ -12,11 +12,7 @@ POSTGRES={
     'port':'5433'
 }
 
+
 app.config['SQLALCHEMY_DATABASE_URI']='postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s'%POSTGRES
 db = SQLAlchemy(app)
 CORS(app)
-
-if __name__ == '__main__':
-  with app.app_context():
-    db.create_all()
-  app.run(port=8000)
