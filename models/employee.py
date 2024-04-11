@@ -1,25 +1,23 @@
-import random
-from datetime import datetime
 from app import db
+from models.user import User
 
-class Employee(db.Model):
-  id = db.Column(db.INTEGER, primary_key=True)
+class Employee(User):
+  id = db.Column(db.INTEGER, db.ForeignKey('user.id'), primary_key=True)
   name = db.Column(db.VARCHAR(100), nullable=False)
-  role = db.Column(db.VARCHAR(100), nullable=False, default="Car Salesman")
+  emp_role = db.Column(db.VARCHAR(100), nullable=False, default="Car Salesman")
   imageUrl = db.Column(db.VARCHAR(400), nullable=False, default="https://i.imgur.com/0S7YILp.jpeg")
   xUrl = db.Column(db.VARCHAR(400), nullable=False, default="https://twitter.com")
   linkedinUrl = db.Column(db.VARCHAR(400), nullable=False, default="https://www.linkedin.com")
-  timeCreated = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
   def __repr__(self):
     return f"Employee: {self.name}"
 
-  def __init__(self, name, role=None, imageUrl=None, xUrl=None, linkedinUrl=None):
-    self.id = self.generate_unique_id()
+  def __init__(self, name, username, password, emp_role=None, imageUrl=None, xUrl=None, linkedinUrl=None):
+    super().__init__(username, password, "employee")
+    
     self.name = name
-    self.timeCreated = datetime.now()
-    if role is not None:
-      self.role = role
+    if emp_role is not None:
+      self.emp_role = emp_role
     if imageUrl is not None:
       self.imageUrl = imageUrl
     if xUrl is not None:
@@ -27,21 +25,13 @@ class Employee(db.Model):
     if linkedinUrl is not None:
       self.linkedinUrl = linkedinUrl
       
-  def generate_unique_id(self):
-    while True:
-      random_id = random.randint(100000, 999999)
-      is_employee = Employee.query.filter_by(id=random_id).first()
-      if not is_employee:
-        return random_id
-
-
 def format_employee(employee):
   return {
     "name" : employee.name,
     "id": employee.id,
-    "role": employee.role,
+    "emp_role": employee.emp_role,
     "imageUrl": employee.imageUrl,
     "xUrl": employee.xUrl,
     "linkedinUrl": employee.linkedinUrl,
-    "timeCreated" : employee.timeCreated
+    "username": employee.username
   }

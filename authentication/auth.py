@@ -30,13 +30,10 @@ def user_middleware(roles):
         @wraps(func)
         def wrapper():
             token = request.cookies.get('auth')
-            print(token)
             if not token:
                 return jsonify({'error': 'Access failed (missing token)'}), 200
             try:
                 payload = jwt.decode(token, JWT_SECRETKEY, algorithms=['HS256'])
-                print(payload)
-                print(payload.get('role'))
                 if payload.get('role') not in roles:
                     return jsonify({'error': 'Access failed (requires admin)'}), 200
             except jwt.ExpiredSignatureError:

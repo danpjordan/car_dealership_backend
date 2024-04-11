@@ -21,11 +21,11 @@ class User(db.Model):
     self.password = bcrypt.hashpw((password).encode('utf-8'), 
                     bcrypt.gensalt()).decode('utf-8')
     self.active_status = 'Y'
-    self.timeCreated = datetime.now();
+    self.timeCreated = datetime.utcnow()
     
     if role is not None:
       self.role = role
-    
+  
   def generate_unique_id(self):
     while True:
       random_id = random.randint(100000, 999999)

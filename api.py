@@ -11,15 +11,23 @@ from app import app, db
 def create_employee():
   data = request.json
   if ('name') not in data:
-    return jsonify({'error': 'name attribute not provided'}), 400
+    return jsonify({'error': 'name not provided'}), 400
+  
+  if ('username') not in data:
+    return jsonify({'error': 'username not provided'}), 400
+  
+  if ('password') not in data:
+    return jsonify({'error': 'password not provided'}), 400
   
   name = data.get('name')
-  role = data.get('role')
+  username = data.get('username')
+  password = data.get('password')
+  emp_role = data.get('emp_role')
   imageUrl = data.get('imageUrl')
   xUrl = data.get('xUrl')
   linkedinUrl = data.get('linkedinUrl')
   
-  employee = Employee(name, role, imageUrl, xUrl, linkedinUrl)
+  employee = Employee(name, username, password, emp_role, imageUrl, xUrl, linkedinUrl)
   db.session.add(employee)
   
   try:
@@ -64,7 +72,7 @@ def update_employee(id):
   
   data = request.json
   employee.name = data.get('name', employee.name)
-  employee.role = data.get('role', employee.role)
+  employee.emp_role = data.get('emp_role', employee.emp_role)
   employee.imageUrl = data.get('imageUrl', employee.imageUrl)
   employee.xUrl = data.get('xUrl', employee.xUrl)
   employee.linkedinUrl = data.get('linkedinUrl', employee.linkedinUrl)
