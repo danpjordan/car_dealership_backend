@@ -1,5 +1,3 @@
-
-
 1) set up environment
 python3 -m venv env
 
@@ -12,6 +10,7 @@ pip install -r requirements.txt
 3) create dabase named car_dealership
 idk just figure it out
 
-4) start database
-python3 main.py
+4) optional - populate database using jsons in data folder and the batch-create-xxxx api
 
+5) start database
+python3 main.py

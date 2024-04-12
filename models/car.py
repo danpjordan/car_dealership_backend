@@ -5,7 +5,7 @@ from models.employee import Employee
 
 class Car(db.Model):
   id = db.Column(db.INTEGER, primary_key=True)
-  vin = db.Column(db.VARCHAR(17), nullable=False)
+  vin = db.Column(db.VARCHAR(17), nullable=False, unique=True)
   make = db.Column(db.VARCHAR(100), nullable=False, default="Contact dealership")
   model = db.Column(db.VARCHAR(100), nullable=False, default="Contact dealership")
   year = db.Column(db.INTEGER, nullable=False, default=0)
@@ -13,14 +13,15 @@ class Car(db.Model):
   price = db.Column(db.DECIMAL(8,2), nullable=False, default=0)
   miles = db.Column(db.INTEGER, nullable=False, default=0)
   description = db.Column(db.VARCHAR(2000), nullable=False, default="Contact dealership")
-  timeCreated = db.Column(db.DateTime, nullable=False, default=datetime.now())
+  timeCreated = db.Column(db.DateTime, nullable=False)
   
   def __repr__(self):
     return f"Car: {self.model} {self.make} {self.year}"
 
-  def __init__(self, vin, imageUrl, make=None, model=None, year=None, price=None, miles=None, description=None, timeCreated=None):
+  def __init__(self, vin, make=None, model=None, year=None, imageUrl=None, price=None, miles=None, description=None):
     self.id = self.generate_unique_id()
     self.vin = vin
+    self.timeCreated = datetime.utcnow()
     if imageUrl is not None:
       self.imageUrl = imageUrl
     if make is not None:
@@ -35,8 +36,6 @@ class Car(db.Model):
       self.miles = miles
     if description is not None:
       self.description = description
-    if timeCreated is not None:
-      self.timeCreated = timeCreated
           
   def generate_unique_id(self):
     while True:
@@ -45,17 +44,3 @@ class Car(db.Model):
       if not is_car:
         return random_id
 
-# format car
-def format_car(car):
-  return {
-    "id" : car.id,
-    "vin" : car.vin,
-    "make" : car.make,
-    "model" : car.model,
-    "year" : car.year,
-    "imageUrl" : car.imageUrl,
-    "price" : car.price,
-    "miles" : car.miles,
-    "description" : car.description,
-    "timeCreated" : car.timeCreated
-  }

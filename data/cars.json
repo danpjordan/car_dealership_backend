@@ -1,0 +1,42 @@
+[
+  {
+    "vin": "1HGCM82633A100202",
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2010,
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "price": 8500,
+    "miles": 85000,
+    "description": "This Toyota Corolla is a reliable and fuel-efficient sedan. It has been well-maintained and is in great condition. Perfect for daily commuting."
+  },
+  {
+    "vin": "2G1WF55K579185709",
+    "make": "Ford",
+    "model": "Mustang",
+    "year": 2007,
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "price": 12000,
+    "miles": 60000,
+    "description": "Get ready to turn heads with this stylish Ford Mustang. With its powerful V8 engine, this car offers both performance and style."
+  },
+  {
+    "vin": "JH4DC53885S013854",
+    "make": "Honda",
+    "model": "Accord",
+    "year": 2005,
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "price": 6800,
+    "miles": 105000,
+    "description": "The Honda Accord is known for its reliability and comfort. This one comes with a spacious interior and smooth ride, making it a great family car."
+  },
+  {
+    "vin": "3FAFP37N05R177708",
+    "make": "Chevrolet",
+    "model": "Impala",
+    "year": 2008,
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "price": 7200,
+    "miles": 95000,
+    "description": "Cruise in style with this Chevrolet Impala. It offers a comfortable ride and plenty of space for passengers. Great value for the price."
+  }
+]

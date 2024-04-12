@@ -25,13 +25,5 @@ class Employee(User):
     if linkedinUrl is not None:
       self.linkedinUrl = linkedinUrl
       
-def format_employee(employee):
-  return {
-    "name" : employee.name,
-    "id": employee.id,
-    "emp_role": employee.emp_role,
-    "imageUrl": employee.imageUrl,
-    "xUrl": employee.xUrl,
-    "linkedinUrl": employee.linkedinUrl,
-    "username": employee.username
-  }
+      
+      
