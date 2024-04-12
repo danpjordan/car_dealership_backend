@@ -17,4 +17,4 @@ POSTGRES={
 
 app.config['SQLALCHEMY_DATABASE_URI']='postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s'%POSTGRES
 db = SQLAlchemy(app)
-CORS(app)
+CORS(app, supports_credentials=True, origins=['http://localhost:3000'])
