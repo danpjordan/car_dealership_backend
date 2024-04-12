@@ -18,7 +18,6 @@ def createToken(user):
 
 def setCookie(token):
     response = make_response({'status': True, 'msg': 'Login successful'})
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
     response.set_cookie('auth', token, max_age=60*60)
     return response
   
