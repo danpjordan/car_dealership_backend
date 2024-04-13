@@ -32,15 +32,15 @@ def user_middleware(roles):
         def wrapper():
             token = request.cookies.get('auth')
             if not token:
-                return jsonify({'error': 'Access failed (missing token)'}), 200
+                return jsonify({'error': 'Access failed (missing token)'}), 403
             try:
                 payload = jwt.decode(token, JWT_SECRETKEY, algorithms=['HS256'])
                 if payload.get('role') not in roles:
-                    return jsonify({'error': 'Access failed (requires admin)'}), 200
+                    return jsonify({'error': 'Access failed (requires admin)'}), 403
             except jwt.ExpiredSignatureError:
-                return jsonify({'error': 'Access failed (unauthorized signature)'}), 200
+                return jsonify({'error': 'Access failed (unauthorized signature)'}), 403
             except jwt.InvalidTokenError:
-                return jsonify({'error': 'Access failed (invalid token)'}), 200
+                return jsonify({'error': 'Access failed (invalid token)'}), 403
             return func()
         return wrapper
     return decorator
@@ -55,15 +55,15 @@ def login():
         User.active_status=='Y'
         ).first()
     if not user:
-      return jsonify({'error': 'user not found'}, 200)
+      return make_response({'error': 'invalid password'}, 400)
     if not bcrypt.checkpw(
       request.json.get('password').encode('utf-8'),
       user.password.encode('utf-8')
     ):
-      return jsonify({'error': 'invalid password'}, 200)
+      return make_response({'error': 'invalid password'}, 400)
     
   except Exception as e:
-    return jsonify({'error': 'unsuccessful login', 'details': str(e)}), 400
+    return make_response({'error': 'unsuccessful login', 'details': str(e)}), 400
   
   try:
     token = createToken(user)
@@ -71,21 +71,21 @@ def login():
     print(format_user(user))
     return setCookie(token), format_user(user)
   except Exception as e:
-    return jsonify({'error': 'failed to create token', 'details': str(e)}), 400
+    return make_response({'error': 'failed to create token', 'details': str(e)}), 400
 
 def logout():
   try:
     return removeCookie()
 
   except Exception as e:
-    return jsonify({'error': 'logout unsuccessful', 'details': str(e)}), 400
+    return make_response({'error': 'logout unsuccessful', 'details': str(e)}), 400
 
 def create_user():
   data = request.json
   if ('username') not in data:
-    return jsonify({'error': 'username not provided'}), 400
+    return make_response({'error': 'username not provided'}), 400
   if ('password') not in data:
-    return jsonify({'error': 'password not provided'}), 400
+    return make_response({'error': 'password not provided'}), 400
    
   username = data.get('username')
   role = data.get('role')
@@ -99,6 +99,6 @@ def create_user():
     return format_user(user)
   except Exception as e:
     db.session.rollback()
-    return jsonify({'error': 'Error in create_employee()', 'details': str(e)}), 500
+    return make_response({'error': 'Error in create_employee()', 'details': str(e)}), 500
   finally:
     db.session.close()
