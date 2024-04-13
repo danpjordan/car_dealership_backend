@@ -1,5 +1,8 @@
 from flask import jsonify, request
 from models.user import *
+from models.employee import *
+from models.manager import *
+from models.customer import *
 from authentication.auth import *
 from controllers.employee_controller import *
 from controllers.car_controller import *
