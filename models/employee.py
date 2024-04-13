@@ -8,7 +8,7 @@ class Employee(User):
   imageUrl = db.Column(db.VARCHAR(400), nullable=False, default="https://i.imgur.com/0S7YILp.jpeg")
   xUrl = db.Column(db.VARCHAR(400), nullable=False, default="https://twitter.com")
   linkedinUrl = db.Column(db.VARCHAR(400), nullable=False, default="https://www.linkedin.com")
-
+  # salary
   def __repr__(self):
     return f"Employee: {self.name}"
 

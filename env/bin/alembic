@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/danpj/Library/CloudStorage/OneDrive-Personal/School/Database Design - COP 4710/Final Project/car-dealership/project-backend/env/bin/python3" "$0" "$@"
+'''exec' "/Users/shoh/Desktop/classes/db design/database_project/database_project_backend/env/bin/python3" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
