@@ -32,7 +32,7 @@ def get_employees_api():
   return get_employees()
 
 # create batch employees
-@app.route('/batch-create-employees', methods=['POST'])
+@app.route('/batch-create-employees/', methods=['POST'])
 def batch_create_employees_api():
   return batch_create_employees()
 
@@ -92,7 +92,7 @@ def get_cars_api():
   return get_cars()
 
 # create batch cars
-@app.route('/batch-create-cars', methods=['POST'])
+@app.route('/batch-create-cars/', methods=['POST'])
 def batch_create_cars_api():
   return batch_create_cars()
 
@@ -113,13 +113,14 @@ def helloC():
 
 @app.route('/login/', methods = ['POST'])
 def login_api():
+  print(login())
   return login()
   
 @app.route('/logout/', methods = ['GET'])
 def logout_api():
   return logout()
 
-@app.route('/users', methods = ['POST'])
+@app.route('/users/', methods = ['POST'])
 def create_user_api():
   return create_user()
 

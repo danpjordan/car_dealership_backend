@@ -65,11 +65,11 @@ def login():
   except Exception as e:
     return jsonify({'error': 'unsuccessful login', 'details': str(e)}), 400
   
-  print("success")
-  
   try:
     token = createToken(user)
-    return setCookie(token)
+    print(setCookie(token))
+    print(format_user(user))
+    return setCookie(token), format_user(user)
   except Exception as e:
     return jsonify({'error': 'failed to create token', 'details': str(e)}), 400
 
