@@ -16,8 +16,8 @@ def createToken(user):
         key=JWT_SECRETKEY, algorithm='HS256')
   return token
 
-def setCookie(token):
-    response = make_response({'status': True, 'msg': 'Login successful'})
+def setCookie(token, user):
+    response = make_response(format_user(user))
     response.set_cookie('auth', token, max_age=60*60)
     return response
   
@@ -55,21 +55,19 @@ def login():
         User.active_status=='Y'
         ).first()
     if not user:
-      return make_response({'error': 'invalid password'}, 400)
+      return make_response({'error': 'invalid username or password'}, 400)
     if not bcrypt.checkpw(
       request.json.get('password').encode('utf-8'),
       user.password.encode('utf-8')
     ):
-      return make_response({'error': 'invalid password'}, 400)
+      return make_response({'error': 'invalid username or password'}, 400)
     
   except Exception as e:
     return make_response({'error': 'unsuccessful login', 'details': str(e)}), 400
   
   try:
     token = createToken(user)
-    print(setCookie(token))
-    print(format_user(user))
-    return setCookie(token), format_user(user)
+    return setCookie(token, user)
   except Exception as e:
     return make_response({'error': 'failed to create token', 'details': str(e)}), 400
 
