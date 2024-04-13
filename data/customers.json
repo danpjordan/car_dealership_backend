@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Jane Miller",
+    "username": "jmiller22",
+    "password": "securepassword", 
+    "email": "jane.miller@example.com",
+    "phone": "555-1212"
+  },
+  {
+    "name": "Sarah Wilson",
+    "username": "swilson1985",
+    "password": "ilovetrucks",
+    "email": "sarah.wilson@yahoo.com",
+    "phone": "987-654-3210",
+    "cars_purchased": 1 
+  },
+  {
+    "name": "Alex Thompson",
+    "username": "athompson",
+    "password": "alexspassword", 
+    "email": "alex.t@gmail.com",
+    "phone": "612-345-6789"
+  }
+]

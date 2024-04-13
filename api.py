@@ -3,6 +3,7 @@ from models.user import *
 from authentication.auth import *
 from controllers.employee_controller import *
 from controllers.car_controller import *
+from controllers.customer_controller import *
 from app import app, db
 
 # create an employee
@@ -34,6 +35,36 @@ def get_employees_api():
 @app.route('/batch-create-employees/', methods=['POST'])
 def batch_create_employees_api():
   return batch_create_employees()
+
+# create a customer
+@app.route('/customers/', methods = ['POST'])
+def create_customer_api():
+  return create_customer()
+
+# delete a customer
+@app.route('/customers/<id>/', methods = ['DELETE'])
+def delete_customer_api(id):
+  return delete_customer(id)
+
+# get single customer
+@app.route('/customers/<id>/', methods = ['GET'])
+def get_customer_api(id):
+  return get_customer(id)
+
+# edit a customer
+@app.route('/customers/<id>/', methods = ['PUT'])
+def update_customer_api(id):
+  return update_customer(id)
+
+# get all customers
+@app.route('/customers/', methods = ['GET'])
+def get_customers_api():
+  return get_customers()
+
+# create batch customers
+@app.route('/batch-create-customers', methods=['POST'])
+def batch_create_customers_api():
+  return batch_create_customers()
 
 # create a car
 @app.route('/cars/', methods = ['POST'])
