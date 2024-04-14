@@ -1,45 +1,10 @@
 from flask import jsonify, request
-from models.user import *
-from models.employee import *
-from models.manager import *
-from models.customer import *
 from authentication.auth import *
-from controllers.employee_controller import *
 from controllers.car_controller import *
 from controllers.customer_controller import *
 from controllers.salesrep_controller import *
 from controllers.manager_controller import *
 from app import app, db
-
-# create an employee
-@app.route('/employees/', methods = ['POST'])
-def create_employee_api():
- return create_employee()
-
-# delete an employee
-@app.route('/employees/<id>/', methods = ['DELETE'])
-def delete_employee_api(id):
-  return delete_employee(id)
-
-# get single employee
-@app.route('/employees/<id>/', methods = ['GET'])
-def get_employee_api(id):
-  return get_employee(id)
-
-# edit an employee
-@app.route('/employees/<id>/', methods = ['PUT'])
-def update_employee_api(id):
-  return update_employee(id)
-
-# get all employees
-@app.route('/employees/', methods = ['GET'])
-def get_employees_api():
-  return get_employees()
-
-# create batch employees
-@app.route('/batch-create-employees/', methods=['POST'])
-def batch_create_employees_api():
-  return batch_create_employees()
 
 @app.route('/managers/', methods = ['POST'])
 def create_manager_api():
@@ -58,12 +23,36 @@ def update_manager_api(id):
   return update_manager(id)
 
 @app.route('/managers/', methods = ['GET'])
-def get_managers():
+def get_managers_api():
   return get_managers()
 
 @app.route('/batch-create-managers/', methods=['POST'])
 def batch_create_managers_api():
   return batch_create_managers()
+
+@app.route('/salesreps/', methods = ['POST'])
+def create_salesrep_api():
+  return create_salesrep()
+
+@app.route('/salesreps/<id>/', methods = ['DELETE'])
+def delete_salesrep_api(id):
+  return delete_salesrep(id)
+
+@app.route('/salesreps/<id>/', methods = ['GET'])
+def get_salesrep_api(id):
+  return get_salesrep(id)
+
+@app.route('/salesreps/<id>/', methods = ['PUT'])
+def update_salesrep_api(id):
+  return update_salesrep(id)
+
+@app.route('/salesreps/', methods = ['GET'])
+def get_all_salesreps_api():
+  return get_all_salesreps()
+
+@app.route('/batch-create-salesreps/', methods=['POST'])
+def batch_create_salesreps_api():
+  return batch_create_salesreps()
 
 # create a customer
 @app.route('/customers/', methods = ['POST'])

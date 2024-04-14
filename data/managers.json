@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Emily Davis",
+    "username": "edavis",
+    "password": "temp123", 
+    "emp_role": "Team Lead"
+  },
+  {
+    "name": "John Peterson",
+    "username": "jpeterson",
+    "password": "regionalmgr2024",
+    "emp_role": "Regional Manager", 
+    "people_managed": 15,
+    "imageUrl": "https://placeholder.com/profilepics/john.jpg",
+    "linkedinUrl": "linkedin.com/in/john-peterson"
+  },
+  {  
+    "name": "Olivia Lee",
+    "username": "olee",
+    "password": "teamlead2023",
+    "emp_role": "Team Lead", 
+    "people_managed": 4 
+  }
+]
