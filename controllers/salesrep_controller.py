@@ -86,7 +86,7 @@ def get_salesrep(id):
     return jsonify({'error': 'SalesRep not found'}), 404
   return jsonify(format_salesrep(salesrep))
 
-def get_all_salesreps():
+def get_salesreps():
   salesreps = SalesRep.query.order_by(SalesRep.timeCreated).all()
   return jsonify([format_salesrep(salesrep) for salesrep in salesreps])
 

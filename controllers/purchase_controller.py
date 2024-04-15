@@ -1,15 +1,45 @@
 from flask import jsonify, request
 from models.purchase import Purchase
+from models.salesrep import SalesRep
+from models.customer import Customer
+from models.car import Car
+from controllers.salesrep_controller import *
+from controllers.customer_controller import *
+from controllers.car_controller import *
+
+
+
 from app import db
 
 
 def format_purchase(purchase):
+  
+  salesrep = db.session.get(SalesRep, purchase.sales_rep_id);
+  customer = db.session.get(Customer, purchase.customer_id);
+  car = db.session.get(Car, purchase.car_id);
+  
   return {
     "id": purchase.id,
-    "sales_rep_id": purchase.sales_rep_id,
-    "customer_id": purchase.customer_id,
-    "car_id": purchase.car_id,
+    "sales_rep_id": salesrep.id,
+    "sales_rep_username": salesrep.username,
+    "sales_rep_name" : salesrep.name,
+    
+    "customer_id": customer.id,
+    "customer_username": customer.username,
+    "customer_name" : customer.cus_name,
+   
+    "car_id": car.id,
+    "car_vin" : car.vin,
+    "car_make" : car.make,
+    "car_model" : car.model,
+    "car_year" : car.year,
+    "car_imageUrl" : car.imageUrl,
+    "car_price" : car.price,
+    "car_miles" : car.miles,
+    "car_description" : car.description,
+    
     "time_purchased": purchase.time_purchased
+    
   }
   
 def create_purchase():
@@ -75,7 +105,7 @@ def update_purchase(id):
     db.session.close()
     
 def get_purchases():
-  purchases = Purchase.query.order_by(purchases.timeCreated.asc()).all()
+  purchases = Purchase.query.order_by(Purchase.time_purchased.asc()).all()
   purchases_list = []
   for purchase in purchases:
     purchases_list.append(format_purchase(purchase))

@@ -49,8 +49,8 @@ def update_salesrep_api(id):
   return update_salesrep(id)
 
 @app.route('/salesreps/', methods = ['GET'])
-def get_all_salesreps_api():
-  return get_all_salesreps()
+def get_salesreps_api():
+  return get_salesreps()
 
 @app.route('/batch-create-salesreps/', methods=['POST'])
 def batch_create_salesreps_api():
@@ -86,8 +86,6 @@ def get_customers_api():
 def batch_create_customers_api():
   return batch_create_customers()
 
-
-
 @app.route('/purchases/', methods = ['POST'])
 def create_purchase_api():
   return create_purchase()
@@ -111,7 +109,6 @@ def get_purchases_api():
 @app.route('/batch-create-purchases/', methods=['POST'])
 def batch_create_purchases_api():
   return batch_create_purchases()
-
 
 # create a car
 @app.route('/cars/', methods = ['POST'])
