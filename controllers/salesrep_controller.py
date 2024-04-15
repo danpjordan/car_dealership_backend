@@ -12,7 +12,6 @@ def format_salesrep(salesrep):
     "imageUrl": salesrep.imageUrl,
     "xUrl": salesrep.xUrl,
     "linkedinUrl": salesrep.linkedinUrl,
-    "number_of_sales": salesrep.number_of_sales
   }
 
 def create_salesrep():
@@ -29,9 +28,8 @@ def create_salesrep():
   imageUrl = data.get('imageUrl')
   xUrl = data.get('xUrl')
   linkedinUrl = data.get('linkedinUrl')
-  number_of_sales = data.get('number_of_sales')
 
-  salesrep = SalesRep(name=name, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, number_of_sales=number_of_sales)
+  salesrep = SalesRep(name=name, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl)
   db.session.add(salesrep)
   
   try:
@@ -86,7 +84,7 @@ def get_salesrep(id):
   return jsonify(format_salesrep(salesrep))
 
 def get_all_salesreps():
-  salesreps = SalesRep.query.all()
+  salesreps = SalesRep.query.order_by(SalesRep.timeCreated).all()
   return jsonify([format_salesrep(salesrep) for salesrep in salesreps])
 
 def batch_create_salesreps():
@@ -102,7 +100,6 @@ def batch_create_salesreps():
       imageUrl=salesrep_info.get('imageUrl'),
       xUrl=salesrep_info.get('xUrl'),
       linkedinUrl=salesrep_info.get('linkedinUrl'),
-      number_of_sales=salesrep_info.get('number_of_sales')
     )
     salesreps.append(salesrep)
   

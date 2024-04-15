@@ -9,14 +9,19 @@ class User(db.Model):
   username = db.Column(db.String(200),unique=True)
   password = db.Column(db.String(200))
   active_status = db.Column(db.String(1))
-  role = db.Column(db.String(10), default="customer")
+  role = db.Column(db.String(10), default="user")
   timeCreated = db.Column(db.DateTime, nullable=False)
 
   def __repr__(self):
     return f"User: {self.username}"
 
-  def __init__(self, username, password, role="customer"):
-    self.id = self.generate_unique_id()
+  def __init__(self, username, password, role=None, usr_id=None):
+    
+    if usr_id is None:
+      self.id = self.generate_unique_id()
+    else:
+      self.id = usr_id
+    
     self.username = username
     self.password = bcrypt.hashpw((password).encode('utf-8'), 
                     bcrypt.gensalt()).decode('utf-8')

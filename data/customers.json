@@ -1,23 +1,22 @@
 [
   {
     "name": "Jane Miller",
-    "username": "jmiller22",
-    "password": "securepassword", 
+    "username": "janem",
+    "password": "jm123", 
     "email": "jane.miller@example.com",
-    "phone": "555-1212"
+    "phone": "134-818-1212"
   },
   {
     "name": "Sarah Wilson",
-    "username": "swilson1985",
-    "password": "ilovetrucks",
+    "username": "sarahw",
+    "password": "sw123",
     "email": "sarah.wilson@yahoo.com",
-    "phone": "987-654-3210",
-    "cars_purchased": 1 
+    "phone": "234-913-7892"
   },
   {
     "name": "Alex Thompson",
-    "username": "athompson",
-    "password": "alexspassword", 
+    "username": "alext",
+    "password": "at123", 
     "email": "alex.t@gmail.com",
     "phone": "612-345-6789"
   }

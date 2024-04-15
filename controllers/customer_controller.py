@@ -6,10 +6,9 @@ def format_customer(customer):
   return {
     "id": customer.id,
     "username": customer.username,
-    "name" : customer.name,
+    "name" : customer.cus_name,
     "email": customer.email,
     "phone": customer.phone,
-    "cars_purchased": customer.cars_purchased
   }
 
 def create_customer():
@@ -91,7 +90,7 @@ def update_customer(id):
     db.session.close()
 
 def get_customers():
-  customers = Customer.query.all()
+  customers = Customer.query.order_by(Customer.timeCreated).all()
   return jsonify([format_customer(customer) for customer in customers])
 
 def batch_create_customers():

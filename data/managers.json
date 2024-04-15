@@ -1,24 +1,21 @@
 [
   {
+    "usr_id":384713,
     "name": "Emily Davis",
-    "username": "edavis",
-    "password": "temp123", 
-    "emp_role": "Team Lead"
+    "username": "emilyd",
+    "password": "ed123"
   },
   {
+    "usr_id":482384,
     "name": "John Peterson",
-    "username": "jpeterson",
-    "password": "regionalmgr2024",
-    "emp_role": "Regional Manager", 
-    "people_managed": 15,
-    "imageUrl": "https://placeholder.com/profilepics/john.jpg",
+    "username": "johnp",
+    "password": "jp123",
     "linkedinUrl": "linkedin.com/in/john-peterson"
   },
-  {  
-    "name": "Olivia Lee",
-    "username": "olee",
-    "password": "teamlead2023",
-    "emp_role": "Team Lead", 
-    "people_managed": 4 
+  {
+    "name": "42jfa",
+    "username": "asdf",
+    "password": "aasdf",
+    "linkedinUrl": "linkedin.com/in/john-peterson"
   }
 ]

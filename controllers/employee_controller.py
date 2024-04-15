@@ -1,18 +1,18 @@
-# from flask import jsonify, request
-# from models.employee import Employee
-# from app import db
+from flask import jsonify, request
+from models.employee import Employee
+from app import db
 
 
-# def format_employee(employee): 
-#   return {
-#     "id": employee.id,
-#     "username": employee.username,
-#     "name" : employee.name,
-#     "emp_role": employee.emp_role,
-#     "imageUrl": employee.imageUrl,
-#     "xUrl": employee.xUrl,
-#     "linkedinUrl": employee.linkedinUrl
-#   }
+def format_employee(employee): 
+  return {
+    "id": employee.id,
+    "username": employee.username,
+    "name" : employee.name,
+    "role": employee.role,
+    "imageUrl": employee.imageUrl,
+    "xUrl": employee.xUrl,
+    "linkedinUrl": employee.linkedinUrl
+  }
   
 # def create_employee():
 #   data = request.json
@@ -86,12 +86,12 @@
 #     return jsonify({"error": "Employee not found"}), 404
 #   return {'employee': format_employee(employee)}
 
-# def get_employees():
-#   employees = Employee.query.order_by(Employee.timeCreated).all()
-#   employees_list = []
-#   for employee in employees:
-#     employees_list.append(format_employee(employee))
-#   return {'employees': employees_list}
+def get_employees():
+  employees = Employee.query.order_by(Employee.timeCreated).all()
+  employees_list = []
+  for employee in employees:
+    employees_list.append(format_employee(employee))
+  return {'employees': employees_list}
 
 # def batch_create_employees():
 #   employee_data = request.json

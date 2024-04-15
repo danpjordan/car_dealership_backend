@@ -1,24 +1,38 @@
 [
-{
-      "id": 1,
-      "name": "John Doe",
-      "email": "john.doe@example.com",
-      "phone": "123-456-7890",
-      "number_of_sales": 10
-    },
-    {
-      "id": 2,
-      "name": "Jane Smith",
-      "email": "jane.smith@example.com",
-      "phone": "987-654-3210",
-      "sales": 5,
-      "number_of_sales": 5
-    },
-    {
-      "id": 3,
-      "name": "Mike Johnson",
-      "email": "mike.johnson@example.com",
-      "phone": "555-555-5555",
-      "number_of_sales": 8
-    }
+  {
+    "name": "Daniel Jordan",
+    "username": "danielj",
+    "password": "dj123",
+    "emp_role": "Car salesperson",
+    "imageUrl": "https://media.licdn.com/dms/image/D4E03AQEO-xwst588Zg/profile-displayphoto-shrink_400_400/0/1683255837605?e=1718236800&v=beta&t=xuibhP6GrF0quPbkLAHH508h-N1SaNt4dUJTHfXpqeI",
+    "xUrl": "https://www.twitter.com/danpjordan",
+    "linkedinUrl": "https://www.linkedin.com/in/danpjordan"
+  },
+  {
+    "name": "Jason Greb",
+    "username": "jasong",
+    "password": "jg123",
+    "emp_role": "Car salesperson",
+    "imageUrl": "https://media.licdn.com/dms/image/D4E03AQFr8YajHJ0FDw/profile-displayphoto-shrink_400_400/0/1689561505335?e=1718236800&v=beta&t=s0dDT685sQ9BnEAtxtH2S1fmGXl737hmEKrCtb-mTAE",
+    "xUrl": "https://www.twitter.com/",
+    "linkedinUrl": "https://www.linkedin.com/in/jason-greb-07417a198/"
+  },
+  {
+    "name": "Shokhrukh Ibragimov",
+    "username": "shoi",
+    "password": "si123",
+    "emp_role": "Car salesperson",
+    "imageUrl": "https://media.licdn.com/dms/image/C4D03AQGeMxIQS9is-g/profile-displayphoto-shrink_800_800/0/1650227934440?e=2147483647&v=beta&t=1hHTVedSdfHuS1UUmOvqIrIRGuqmq3nwLK2zC0JNK18",
+    "xUrl": "https://www.twitter.com/",
+    "linkedinUrl": "https://www.linkedin.com/in/shokhrukh-ibragimov/"
+  },
+  {
+    "name": "John Doe",
+    "username": "johnd",
+    "password": "jd123",
+    "emp_role": "CEO",
+    "imageUrl": "https://i.imgur.com/0S7YILp.jpeg",
+    "xUrl": "https://www.twitter.com/",
+    "linkedinUrl": "https://www.linkedin.com"
+  }
 ]

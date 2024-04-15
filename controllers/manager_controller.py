@@ -2,17 +2,15 @@ from flask import jsonify, request
 from models.manager import Manager
 from app import db
 
-
 def format_manager(manager): 
   return {
     "id": manager.id,
     "username": manager.username,
     "name" : manager.name,
-    "emp_role": manager.emp_role,
+    "role": manager.role,
     "imageUrl": manager.imageUrl,
     "xUrl": manager.xUrl,
     "linkedinUrl": manager.linkedinUrl,
-    "people_managed": manager.people_managed
   }
 
 def create_manager():
@@ -23,19 +21,16 @@ def create_manager():
     return jsonify({'error': 'username not provided'}), 400
   if 'password' not in data:
     return jsonify({'error': 'password not provided'}), 400
-  if 'emp_role' not in data:
-    return jsonify({'error': 'emp_role not provided'}), 400
   
   name = data.get('name')
   username = data.get('username')
   password = data.get('password')
-  emp_role = data.get('emp_role')
   imageUrl = data.get('imageUrl')
   xUrl = data.get('xUrl')
   linkedinUrl = data.get('linkedinUrl')
-  people_managed = data.get('people_managed', 0)
+  usr_id = data.get('usr_id')
 
-  manager = Manager(name, username, password, emp_role, imageUrl, xUrl, linkedinUrl, people_managed)
+  manager = Manager(name, username, password, imageUrl, xUrl, linkedinUrl, usr_id)
   db.session.add(manager)
 
   try:
@@ -79,16 +74,12 @@ def update_manager(id):
     manager.username = data.get('username', manager.username)
   if 'password' in data:
     manager.password = data.get('password', manager.password)
-  if 'emp_role' in data:
-    manager.emp_role = data.get('emp_role', manager.emp_role)
   if 'imageUrl' in data:
     manager.imageUrl = data.get('imageUrl', manager.imageUrl)
   if 'xUrl' in data:
     manager.xUrl = data.get('xUrl', manager.xUrl)
   if 'linkedinUrl' in data:
     manager.linkedinUrl = data.get('linkedinUrl', manager.linkedinUrl)
-  if 'people_managed' in data:
-    manager.people_managed = data.get('people_managed', manager.people_managed)
   
   try:
     db.session.commit()
@@ -100,32 +91,38 @@ def update_manager(id):
     db.session.close()
 
 def get_managers():
-  managers = Manager.query.all()
+  managers = Manager.query.order_by(Manager.timeCreated).all()
   return jsonify({'managers': [format_manager(manager) for manager in managers]})
+  
+  # employees = Employee.query.order_by(Employee.timeCreated).all()
+  # employees_list = []
+  # for employee in employees:
+  #   employees_list.append(format_employee(employee))
+  # return {'employees': employees_list}
 
 def batch_create_managers():
-  data = request.json
-  if 'managers' not in data:
+  manager_data = request.json
+  if not manager_data:
     return jsonify({'error': 'managers not provided'}), 400
   
-  managers = data.get('managers')
+  managers = []
 
-  for manager in managers:
-    name = manager.get('name')
-    username = manager.get('username')
-    password = manager.get('password')
-    emp_role = manager.get('emp_role')
-    imageUrl = manager.get('imageUrl')
-    xUrl = manager.get('xUrl')
-    linkedinUrl = manager.get('linkedinUrl')
-    people_managed = manager.get('people_managed', 0)
+  for manager_info in manager_data:
+    name = manager_info.get('name')
+    username = manager_info.get('username')
+    password = manager_info.get('password')
+    imageUrl = manager_info.get('imageUrl')
+    xUrl = manager_info.get('xUrl')
+    linkedinUrl = manager_info.get('linkedinUrl')
+    usr_id = manager_info.get('usr_id')
 
-    manager = Manager(name, username, password, emp_role, imageUrl, xUrl, linkedinUrl, people_managed)
-    db.session.add(manager)
+    manager = Manager(name, username, password, imageUrl, xUrl, linkedinUrl, usr_id)
+    managers.append(manager)
   
   try:
+    db.session.add_all(managers)
     db.session.commit()
-    return jsonify({'success': 'Managers created'})
+    return 'managers added successfully'
   except Exception as e:
     db.session.rollback()
     return jsonify({'error': 'Error in batch_create_managers()', 'details': str(e)}), 500

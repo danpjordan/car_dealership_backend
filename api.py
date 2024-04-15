@@ -1,10 +1,11 @@
-from flask import jsonify, request
 from authentication.auth import *
 from controllers.car_controller import *
 from controllers.customer_controller import *
 from controllers.salesrep_controller import *
 from controllers.manager_controller import *
-from app import app, db
+from controllers.employee_controller import *
+
+from app import app
 
 @app.route('/managers/', methods = ['POST'])
 def create_manager_api():
@@ -113,6 +114,11 @@ def get_cars_api():
 @app.route('/batch-create-cars/', methods=['POST'])
 def batch_create_cars_api():
   return batch_create_cars()
+
+# get all employees
+@app.route('/employees/', methods = ['GET'])
+def get_employees_api():
+  return get_employees()
 
 @app.route('/adminpage/', methods = ['GET'])
 @user_middleware(['admin'])
