@@ -30,8 +30,9 @@ def create_car():
   price = data.get('price')
   miles = data.get('miles')
   description = data.get('description')
+  car_id = data.get('car_id')
   
-  car = Car(vin, make, model, year, imageUrl, price, miles, description)
+  car = Car(vin, make, model, year, imageUrl, price, miles, description, car_id)
   db.session.add(car)
   
   try:
@@ -107,8 +108,9 @@ def batch_create_cars():
     price = car_info.get('price')
     miles = car_info.get('miles')
     description = car_info.get('description')
+    car_id = car_info.get('car_id')
       
-    car = Car(vin, make, model, year, imageUrl, price, miles, description)
+    car = Car(vin, make, model, year, imageUrl, price, miles, description, car_id)
     cars.append(car)
   try:
     db.session.add_all(cars)

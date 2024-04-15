@@ -4,20 +4,23 @@
     "username": "janem",
     "password": "jm123", 
     "email": "jane.miller@example.com",
-    "phone": "134-818-1212"
+    "phone": "134-818-1212",
+    "usr_id":481924
   },
   {
     "name": "Sarah Wilson",
     "username": "sarahw",
     "password": "sw123",
     "email": "sarah.wilson@yahoo.com",
-    "phone": "234-913-7892"
+    "phone": "234-913-7892",
+    "usr_id":928434
   },
   {
     "name": "Alex Thompson",
     "username": "alext",
     "password": "at123", 
     "email": "alex.t@gmail.com",
-    "phone": "612-345-6789"
+    "phone": "612-345-6789",
+    "usr_id":576728
   }
 ]

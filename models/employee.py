@@ -14,7 +14,7 @@ class Employee(User):
 
   def __init__(self, name, username, password, role="employee", imageUrl=None, xUrl=None, linkedinUrl=None, usr_id=None):
     
-    if id is None:
+    if usr_id is None:
       super().__init__(username, password, role)
     else:
       super().__init__(username, password, role, usr_id)

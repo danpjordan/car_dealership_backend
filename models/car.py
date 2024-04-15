@@ -18,8 +18,12 @@ class Car(db.Model):
   def __repr__(self):
     return f"Car: {self.model} {self.make} {self.year}"
 
-  def __init__(self, vin, make=None, model=None, year=None, imageUrl=None, price=None, miles=None, description=None):
-    self.id = self.generate_unique_id()
+  def __init__(self, vin, make=None, model=None, year=None, imageUrl=None, price=None, miles=None, description=None, car_id=None):
+    if car_id is None:
+      self.id = self.generate_unique_id()
+    else:
+      self.id = car_id
+      
     self.vin = vin
     self.timeCreated = datetime.utcnow()
     if imageUrl is not None:

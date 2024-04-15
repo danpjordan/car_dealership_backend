@@ -30,8 +30,9 @@ def create_salesrep():
   imageUrl = data.get('imageUrl')
   xUrl = data.get('xUrl')
   linkedinUrl = data.get('linkedinUrl')
+  usr_id = data.get('usr_id')
 
-  salesrep = SalesRep(name=name, manager_id=manager_id, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl)
+  salesrep = SalesRep(name=name, manager_id=manager_id, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, usr_id=usr_id)
   db.session.add(salesrep)
   
   try:
@@ -103,6 +104,7 @@ def batch_create_salesreps():
       imageUrl=salesrep_info.get('imageUrl'),
       xUrl=salesrep_info.get('xUrl'),
       linkedinUrl=salesrep_info.get('linkedinUrl'),
+      usr_id = salesrep_info.get('usr_id')
     )
     salesreps.append(salesrep)
   

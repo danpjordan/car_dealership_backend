@@ -10,8 +10,11 @@ class Customer(User):
   def __repr__(self):
     return f"Customer: {self.cus_name}"
   
-  def __init__(self, name, username, password, email, phone):
-    super().__init__(username, password, "customer")
+  def __init__(self, name, username, password, email, phone, usr_id=None):
+    if usr_id is None:
+      super().__init__(username, password, "customer")
+    else:
+      super().__init__(username, password, "customer", usr_id)
     
     self.cus_name = name
     self.email = email

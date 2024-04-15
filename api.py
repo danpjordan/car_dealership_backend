@@ -4,6 +4,7 @@ from controllers.customer_controller import *
 from controllers.salesrep_controller import *
 from controllers.manager_controller import *
 from controllers.employee_controller import *
+from controllers.purchase_controller import *
 
 from app import app
 
@@ -84,6 +85,33 @@ def get_customers_api():
 @app.route('/batch-create-customers', methods=['POST'])
 def batch_create_customers_api():
   return batch_create_customers()
+
+
+
+@app.route('/purchases/', methods = ['POST'])
+def create_purchase_api():
+  return create_purchase()
+
+@app.route('/purchases/<id>/', methods = ['DELETE'])
+def delete_purchase_api(id):
+  return delete_purchase(id)
+
+@app.route('/purchases/<id>/', methods = ['GET'])
+def get_purchase_api(id):
+  return get_purchase(id)
+
+@app.route('/purchases/<id>/', methods = ['PUT'])
+def update_purchase_api(id):
+  return update_purchase(id)
+
+@app.route('/purchases/', methods = ['GET'])
+def get_purchases_api():
+  return get_purchases()
+
+@app.route('/batch-create-purchases/', methods=['POST'])
+def batch_create_purchases_api():
+  return batch_create_purchases()
+
 
 # create a car
 @app.route('/cars/', methods = ['POST'])

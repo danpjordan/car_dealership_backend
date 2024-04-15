@@ -1,5 +1,6 @@
 [
   {
+    "car_id":8428,
     "vin": "1HGCM82633A100202",
     "make": "Toyota",
     "model": "Corolla",
@@ -10,6 +11,7 @@
     "description": "This Toyota Corolla is a reliable and fuel-efficient sedan. It has been well-maintained and is in great condition. Perfect for daily commuting."
   },
   {
+    "car_id":5192,
     "vin": "2G1WF55K579185709",
     "make": "Ford",
     "model": "Mustang",
@@ -20,6 +22,7 @@
     "description": "Get ready to turn heads with this stylish Ford Mustang. With its powerful V8 engine, this car offers both performance and style."
   },
   {
+    "car_id":9284,
     "vin": "JH4DC53885S013854",
     "make": "Honda",
     "model": "Accord",
@@ -30,6 +33,7 @@
     "description": "The Honda Accord is known for its reliability and comfort. This one comes with a spacious interior and smooth ride, making it a great family car."
   },
   {
+    "car_id":6820,
     "vin": "3FAFP37N05R177708",
     "make": "Chevrolet",
     "model": "Impala",

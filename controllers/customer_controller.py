@@ -33,8 +33,9 @@ def create_customer():
   password = data.get('password')
   email = data.get('email')
   phone = data.get('phone')
+  usr_id = data.get('usr_id')
   
-  customer = Customer(name=name, username=username, password=password, email=email, phone=phone)
+  customer = Customer(name=name, username=username, password=password, email=email, phone=phone, usr_id=usr_id)
   db.session.add(customer)
   
   try:
@@ -104,8 +105,9 @@ def batch_create_customers():
     password = customer.get('password')
     email = customer.get('email')
     phone = customer.get('phone')
+    usr_id = customer.get('usr_id')
     
-    customer = Customer(name=name, username=username, password=password, email=email, phone=phone)
+    customer = Customer(name=name, username=username, password=password, email=email, phone=phone, usr_id=usr_id)
     customers.append(customer)
   try:
     db.session.add_all(customers)
