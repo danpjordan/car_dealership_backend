@@ -6,30 +6,32 @@ from app import db
 def format_salesrep(salesrep):
   return {
     "id": salesrep.id,
+    "manager_id": salesrep.manager_id,
     "username": salesrep.username,
     "name" : salesrep.name,
-    "emp_role": salesrep.emp_role,
+    "role": salesrep.role,
     "imageUrl": salesrep.imageUrl,
     "xUrl": salesrep.xUrl,
-    "linkedinUrl": salesrep.linkedinUrl,
+    "linkedinUrl": salesrep.linkedinUrl
   }
 
 def create_salesrep():
   data = request.json
   
   # Check for required fields
-  for field in ['name', 'username', 'password']:
+  for field in ['name', 'username', 'password', 'manager_id']:
     if field not in data:
       return jsonify({'error': f'Missing required field: {field}'}), 400
     
   name = data.get('name')
+  manager_id = data.get('manager_id')
   username = data.get('username')
   password = data.get('password')
   imageUrl = data.get('imageUrl')
   xUrl = data.get('xUrl')
   linkedinUrl = data.get('linkedinUrl')
 
-  salesrep = SalesRep(name=name, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl)
+  salesrep = SalesRep(name=name, manager_id=manager_id, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl)
   db.session.add(salesrep)
   
   try:
@@ -66,7 +68,7 @@ def update_salesrep(id):
   salesrep.imageUrl = data.get('imageUrl', salesrep.imageUrl)
   salesrep.xUrl = data.get('xUrl', salesrep.xUrl)
   salesrep.linkedinUrl = data.get('linkedinUrl', salesrep.linkedinUrl)
-  salesrep.number_of_sales = data.get('number_of_sales', salesrep.number_of_sales)
+  salesrep.manager_id = data.get('manager_id', salesrep.manager_id)
 
   try:
     db.session.commit()
@@ -95,6 +97,7 @@ def batch_create_salesreps():
   for salesrep_info in salesrep_data:
     salesrep = SalesRep(
       name=salesrep_info.get('name'),
+      manager_id = salesrep_info.get('manager_id'),
       username=salesrep_info.get('username'),
       password=salesrep_info.get('password'),
       imageUrl=salesrep_info.get('imageUrl'),

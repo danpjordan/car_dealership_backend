@@ -30,7 +30,7 @@ def create_manager():
   linkedinUrl = data.get('linkedinUrl')
   usr_id = data.get('usr_id')
 
-  manager = Manager(name, username, password, imageUrl, xUrl, linkedinUrl, usr_id)
+  manager = Manager(name=name, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, usr_id=usr_id)
   db.session.add(manager)
 
   try:
@@ -116,7 +116,7 @@ def batch_create_managers():
     linkedinUrl = manager_info.get('linkedinUrl')
     usr_id = manager_info.get('usr_id')
 
-    manager = Manager(name, username, password, imageUrl, xUrl, linkedinUrl, usr_id)
+    manager = Manager(name=name, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, usr_id=usr_id)
     managers.append(manager)
   
   try:
