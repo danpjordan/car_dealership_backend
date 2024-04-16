@@ -46,7 +46,7 @@ def create_purchase():
   data = request.json
 
   # Check for required fields
-  for field in ['salesrep_id', 'customer_id', 'car_id']:
+  for field in ['sales_rep_id', 'customer_id', 'car_id']:
     if field not in data:
       return jsonify({'error': f'Missing required field: {field}'}), 400
   

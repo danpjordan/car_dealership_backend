@@ -112,8 +112,8 @@ def batch_create_cars():
       
     car = Car(vin, make, model, year, imageUrl, price, miles, description, car_id)
     cars.append(car)
+    db.session.add(car)
   try:
-    db.session.add_all(cars)
     db.session.commit()
     return 'cars added successfully'
   except Exception as e:

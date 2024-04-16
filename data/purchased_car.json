@@ -1,0 +1,68 @@
+[
+  {
+    "car_id": 8097,
+    "vin": "5J6RE4H58AL122473",
+    "make": "Honda",
+    "model": "CR-V",
+    "year": 2010,
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "price": 11500,
+    "miles": 82000,
+    "description": "The Honda CR-V is a versatile SUV perfect for families or outdoor adventures. Enjoy its spacious interior and capable performance."
+  },
+  {
+    "car_id": 4612,
+    "vin": "1GNSCBKC5FR142345",
+    "make": "Chevrolet",
+    "model": "Suburban",
+    "year": 2012,
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "price": 20500,
+    "miles": 97000,
+    "description": "Need space and comfort? The Chevrolet Suburban has you covered. With seating for the whole family and ample cargo room, it's the ultimate SUV."
+  },
+  {
+    "car_id": 2715,
+    "vin": "1FMZU73K14ZA15478",
+    "make": "Ford",
+    "model": "Explorer",
+    "year": 2004,
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "price": 4500,
+    "miles": 132000,
+    "description": "The Ford Explorer is a rugged and capable SUV. Whether it's city streets or off-road trails, this SUV is ready for the adventure."
+  },
+  {
+    "car_id": 2547,
+    "vin": "1G1ZC5EB7AF120094",
+    "make": "Chevrolet",
+    "model": "Malibu",
+    "year": 2010,
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "price": 7800,
+    "miles": 89000,
+    "description": "The Chevrolet Malibu offers a comfortable ride and modern features. With its spacious cabin and fuel-efficient engine, it's a great choice."
+  },
+  {
+    "car_id": 1724,
+    "vin": "JN1AZ4EH9BM404321",
+    "make": "Nissan",
+    "model": "370Z",
+    "year": 2014,
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "price": 22500,
+    "miles": 38000,
+    "description": "Get ready for excitement with the Nissan 370Z. This sporty coupe offers thrilling performance and head-turning style."
+  },
+  {
+    "car_id": 3924,
+    "vin": "1G6DW677070107890",
+    "make": "Cadillac",
+    "model": "CTS",
+    "year": 2013,
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "price": 19800,
+    "miles": 54000,
+    "description": "Luxury meets performance in the Cadillac CTS. With its elegant design and powerful engine, this sedan offers a premium driving experience."
+  }
+]
