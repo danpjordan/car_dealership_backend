@@ -14,11 +14,12 @@ class Car(db.Model):
   miles = db.Column(db.INTEGER, nullable=False, default=0)
   description = db.Column(db.VARCHAR(2000), nullable=False, default="Contact dealership")
   timeCreated = db.Column(db.DateTime, nullable=False)
+  is_sold = db.Column(db.VARCHAR(1), nullable=False, default="N")
   
   def __repr__(self):
     return f"Car: {self.model} {self.make} {self.year}"
 
-  def __init__(self, vin, make=None, model=None, year=None, imageUrl=None, price=None, miles=None, description=None, car_id=None):
+  def __init__(self, vin, make=None, model=None, year=None, imageUrl=None, price=None, miles=None, description=None, car_id=None, is_sold=None):
     if car_id is None:
       self.id = self.generate_unique_id()
     else:
@@ -40,6 +41,8 @@ class Car(db.Model):
       self.miles = miles
     if description is not None:
       self.description = description
+    if imageUrl is not None:
+      self.is_sold = is_sold
           
   def generate_unique_id(self):
     while True:

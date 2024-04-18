@@ -1,0 +1,27 @@
+make more fake data
+
+make archive flag
+make is_sold
+
+make sure token is valid for purchase call
+
+\cars filtered by !is_sold
+\team filter by !archived
+
+\customer\purchases - show thier purchases
+
+\salesrep\user\ filter by !archived
+\salesrep\cars - show all cars
+\salesrep\purchases - show thier purchases
+
+\manager\user\
+\manager\salesreps - filter by employees they manage
+\manager\purchases
+\manager\cars - show all cars
+
+\user [put] edit user data
+remove update calls and merge with \user
+
+make customer with nullable=true feilds
+
+\deactive - set user to deactive

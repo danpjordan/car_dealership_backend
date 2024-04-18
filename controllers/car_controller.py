@@ -1,7 +1,6 @@
 from flask import jsonify, request
 from models.car import Car
-from app import db
-
+from app import app, db
 
 def format_car(car):
   return {
@@ -31,8 +30,10 @@ def create_car():
   miles = data.get('miles')
   description = data.get('description')
   car_id = data.get('car_id')
+  is_sold = data.get('is_sold')
   
-  car = Car(vin, make, model, year, imageUrl, price, miles, description, car_id)
+  
+  car = Car(vin, make, model, year, imageUrl, price, miles, description, car_id, is_sold)
   db.session.add(car)
   
   try:
@@ -78,6 +79,7 @@ def update_car(id):
   car.price = data.get('price', car.price)
   car.miles = data.get('miles', car.miles)
   car.description = data.get('description', car.description)
+  car.is_sold = data.get('is_sold', car.is_sold)
 
   try:
     db.session.commit()
@@ -87,8 +89,10 @@ def update_car(id):
   finally:
     db.session.close()
     
-def get_cars():
-  cars = Car.query.order_by(Car.timeCreated.asc()).all()
+def get_unsold_cars():
+  with app.app_context():
+    customer_car_view = db.Table('customer_car_view', db.MetaData(), autoload_with=db.engine)
+  cars = db.session.query(customer_car_view).order_by(customer_car_view.c.timeCreated.asc()).all()
   cars_list = []
   for car in cars:
     cars_list.append(format_car(car))
@@ -109,8 +113,9 @@ def batch_create_cars():
     miles = car_info.get('miles')
     description = car_info.get('description')
     car_id = car_info.get('car_id')
+    is_sold = car_info.get('is_sold')
       
-    car = Car(vin, make, model, year, imageUrl, price, miles, description, car_id)
+    car = Car(vin, make, model, year, imageUrl, price, miles, description, car_id, is_sold)
     cars.append(car)
     db.session.add(car)
   try:

@@ -64,7 +64,8 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 14500,
     "miles": 35000,
-    "description": "Sleek and efficient, this Hyundai Elantra is perfect for city driving. Enjoy its modern features and excellent fuel economy on your daily commute."
+    "description": "Sleek and efficient, this Hyundai Elantra is perfect for city driving. Enjoy its modern features and excellent fuel economy on your daily commute.",
+    "is_sold": "Y"
   },
   {
     "car_id": 9182,
@@ -97,7 +98,8 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 17500,
     "miles": 28000,
-    "description": "Efficiency meets style in this Volkswagen Jetta. Enjoy its spacious interior, smooth ride, and impressive fuel economy on your next road trip."
+    "description": "Efficiency meets style in this Volkswagen Jetta. Enjoy its spacious interior, smooth ride, and impressive fuel economy on your next road trip.",
+    "is_sold": "Y"
   },
   {
     "car_id": 5982,
@@ -122,12 +124,13 @@
     "description": "This Honda Civic is a practical choice for anyone seeking reliability and efficiency. With its spacious interior and legendary Honda quality, it's a great value."
   },
   {
-    "car_id":5910,
+    "car_id": 5910,
     "vin": "5XXGN4A74FG331278",
     "make": "Kia",
     "model": "Optima",
     "year": 2016,
-    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg"
+    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "is_sold": "Y"
   },
   {
     "car_id": 1028,
@@ -160,7 +163,8 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 12500,
     "miles": 42000,
-    "description": "Small in size, big in value. The Honda Fit is known for its versatile interior and excellent fuel efficiency. Perfect for urban living."
+    "description": "Small in size, big in value. The Honda Fit is known for its versatile interior and excellent fuel efficiency. Perfect for urban living.",
+    "is_sold": "Y"
   },
   {
     "car_id": 3018,
@@ -204,7 +208,8 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 19500,
     "miles": 36000,
-    "description": "Experience luxury and performance with the Nissan Maxima. Its upscale interior and powerful V6 engine make every drive a pleasure."
+    "description": "Experience luxury and performance with the Nissan Maxima. Its upscale interior and powerful V6 engine make every drive a pleasure.",
+    "is_sold": "Y"
   },
   {
     "car_id": 8375,
@@ -226,6 +231,7 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 7500,
     "miles": 98000,
-    "description": "Sporty and fun, the Acura RSX offers a thrilling driving experience. With its responsive handling and sleek design, it's sure to impress."
+    "description": "Sporty and fun, the Acura RSX offers a thrilling driving experience. With its responsive handling and sleek design, it's sure to impress.",
+    "is_sold": "Y"
   }
 ]

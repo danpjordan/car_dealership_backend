@@ -15,7 +15,7 @@ class Purchase(db.Model):
     self.customer_id = customer_id
     self.car_id = car_id
     self.time_purchased = datetime.utcnow()
-              
+
   def generate_unique_id(self):
     while True:
       random_id = random.randint(10000, 99999)

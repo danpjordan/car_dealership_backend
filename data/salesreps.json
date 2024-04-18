@@ -7,7 +7,8 @@
     "password": "dj123",
     "imageUrl": "https://media.licdn.com/dms/image/D4E03AQEO-xwst588Zg/profile-displayphoto-shrink_400_400/0/1683255837605?e=1718236800&v=beta&t=xuibhP6GrF0quPbkLAHH508h-N1SaNt4dUJTHfXpqeI",
     "xUrl": "https://www.twitter.com/danpjordan",
-    "linkedinUrl": "https://www.linkedin.com/in/danpjordan"
+    "linkedinUrl": "https://www.linkedin.com/in/danpjordan",
+    "salary":80000
   },
   {
     "name": "Jason Greb",
@@ -17,7 +18,8 @@
     "manager_id":482384,
     "imageUrl": "https://media.licdn.com/dms/image/D4E03AQFr8YajHJ0FDw/profile-displayphoto-shrink_400_400/0/1689561505335?e=1718236800&v=beta&t=s0dDT685sQ9BnEAtxtH2S1fmGXl737hmEKrCtb-mTAE",
     "xUrl": "https://www.twitter.com/",
-    "linkedinUrl": "https://www.linkedin.com/in/jason-greb-07417a198/"
+    "linkedinUrl": "https://www.linkedin.com/in/jason-greb-07417a198/",
+    "salary":85000
   },
   {
     "name": "Shokhrukh Ibragimov",
@@ -27,7 +29,8 @@
     "manager_id":482384,
     "imageUrl": "https://media.licdn.com/dms/image/C4D03AQGeMxIQS9is-g/profile-displayphoto-shrink_800_800/0/1650227934440?e=2147483647&v=beta&t=1hHTVedSdfHuS1UUmOvqIrIRGuqmq3nwLK2zC0JNK18",
     "xUrl": "https://www.twitter.com/",
-    "linkedinUrl": "https://www.linkedin.com/in/shokhrukh-ibragimov/"
+    "linkedinUrl": "https://www.linkedin.com/in/shokhrukh-ibragimov/",
+    "salary":82000
   },
   {
     "name": "John Doe",
@@ -37,6 +40,18 @@
     "manager_id":384713,
     "imageUrl": "https://i.imgur.com/0S7YILp.jpeg",
     "xUrl": "https://www.twitter.com/",
-    "linkedinUrl": "https://www.linkedin.com"
+    "linkedinUrl": "https://www.linkedin.com",
+    "salary":86000
+  },
+  {
+    "name": "Jane Moe",
+    "username": "janem",
+    "usr_id":421593,
+    "password": "jd123",
+    "manager_id":384713,
+    "imageUrl": "https://i.imgur.com/0S7YILp.jpeg",
+    "xUrl": "https://www.twitter.com/",
+    "linkedinUrl": "https://www.linkedin.com",
+    "active_status":"N"
   }
 ]

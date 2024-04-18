@@ -10,9 +10,12 @@ def format_salesrep(salesrep):
     "username": salesrep.username,
     "name" : salesrep.name,
     "role": salesrep.role,
+    "email": salesrep.email,
+    "phone": salesrep.phone,
     "imageUrl": salesrep.imageUrl,
     "xUrl": salesrep.xUrl,
-    "linkedinUrl": salesrep.linkedinUrl
+    "linkedinUrl": salesrep.linkedinUrl,
+    "salary": salesrep.salary
   }
 
 def create_salesrep():
@@ -29,10 +32,14 @@ def create_salesrep():
   password = data.get('password')
   imageUrl = data.get('imageUrl')
   xUrl = data.get('xUrl')
+  email = data.get('email')
+  phone = data.get('phone')
   linkedinUrl = data.get('linkedinUrl')
   usr_id = data.get('usr_id')
+  active_status=data.get('active_status')
+  salary = data.get('salary')
 
-  salesrep = SalesRep(name=name, manager_id=manager_id, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, usr_id=usr_id)
+  salesrep = SalesRep(username=username, password=password, name=name, email=email, phone=phone, manager_id=manager_id, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, salary=salary, active_status=active_status, usr_id=usr_id)
   db.session.add(salesrep)
   
   try:
@@ -63,14 +70,12 @@ def update_salesrep(id):
     return jsonify({"error": "SalesRep not found"}), 404
   
   data = request.json
-  salesrep.name = data.get('name', salesrep.name)
-  salesrep.username = data.get('username', salesrep.username)
-  salesrep.password = data.get('password', salesrep.password)
   salesrep.imageUrl = data.get('imageUrl', salesrep.imageUrl)
   salesrep.xUrl = data.get('xUrl', salesrep.xUrl)
   salesrep.linkedinUrl = data.get('linkedinUrl', salesrep.linkedinUrl)
   salesrep.manager_id = data.get('manager_id', salesrep.manager_id)
-
+  salesrep.salary = data.get('salary', salesrep.salary)
+  
   try:
     db.session.commit()
     return format_salesrep(salesrep)
@@ -98,13 +103,17 @@ def batch_create_salesreps():
   for salesrep_info in salesrep_data:
     salesrep = SalesRep(
       name=salesrep_info.get('name'),
+      usr_id=salesrep_info.get('usr_id'),
       manager_id = salesrep_info.get('manager_id'),
       username=salesrep_info.get('username'),
       password=salesrep_info.get('password'),
       imageUrl=salesrep_info.get('imageUrl'),
       xUrl=salesrep_info.get('xUrl'),
       linkedinUrl=salesrep_info.get('linkedinUrl'),
-      usr_id = salesrep_info.get('usr_id')
+      phone = salesrep_info.get('phone'),
+      email = salesrep_info.get('email'),
+      salary= salesrep_info.get('salary'),
+      active_status=salesrep_info.get('active_status')
     )
     salesreps.append(salesrep)
   

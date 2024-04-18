@@ -20,10 +20,6 @@ def delete_manager_api(id):
 def get_manager_api(id):
   return get_manager(id)
 
-@app.route('/managers/<id>/', methods = ['PUT'])
-def update_manager_api(id):
-  return update_manager(id)
-
 @app.route('/managers/', methods = ['GET'])
 def get_managers_api():
   return get_managers()
@@ -71,10 +67,6 @@ def delete_customer_api(id):
 def get_customer_api(id):
   return get_customer(id)
 
-# edit a customer
-@app.route('/customers/<id>/', methods = ['PUT'])
-def update_customer_api(id):
-  return update_customer(id)
 
 # get all customers
 @app.route('/customers/', methods = ['GET'])
@@ -102,10 +94,12 @@ def get_purchase_api(id):
 def update_purchase_api(id):
   return update_purchase(id)
 
+# get all purchases
 @app.route('/purchases/', methods = ['GET'])
 def get_purchases_api():
   return get_purchases()
 
+# create a lot of purchases
 @app.route('/batch-create-purchases/', methods=['POST'])
 def batch_create_purchases_api():
   return batch_create_purchases()
@@ -130,10 +124,10 @@ def get_car_api(id):
 def update_car_api(id):
   return update_car(id)
   
-# get all cars
+# get all unsold cars
 @app.route('/cars/', methods = ['GET'])
-def get_cars_api():
-  return get_cars()
+def get_unsold_cars_api():
+  return get_unsold_cars()
 
 # create batch cars
 @app.route('/batch-create-cars/', methods=['POST'])
@@ -145,24 +139,8 @@ def batch_create_cars_api():
 def get_employees_api():
   return get_employees()
 
-@app.route('/adminpage/', methods = ['GET'])
-@user_middleware(['admin'])
-def helloA():
-  return "Hello admin!"
-
-@app.route('/employeepage/', methods = ['GET'])
-@user_middleware(['admin', 'employee'])
-def helloE():
-  return "Hello employee!"
-
-@app.route('/customerpage/', methods = ['GET'])
-@user_middleware(['admin', 'employee', 'customer'])
-def helloC():
-  return "Hello customer!"
-
 @app.route('/login/', methods = ['POST'])
 def login_api():
-  print(login())
   return login()
   
 @app.route('/logout/', methods = ['GET'])
@@ -172,6 +150,12 @@ def logout_api():
 @app.route('/users/', methods = ['POST'])
 def create_user_api():
   return create_user()
+
+#adminpage for testing
+@app.route('/adminpage/', methods = ['GET'])
+@user_middleware(['manager'])
+def helloA():
+  return "Hello admin!"
 
 # define a route for testing
 @app.route('/')

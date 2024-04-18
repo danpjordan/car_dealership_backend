@@ -7,10 +7,13 @@ def format_manager(manager):
     "id": manager.id,
     "username": manager.username,
     "name" : manager.name,
+    "phone" : manager.phone,
+    "email" : manager.email,
     "role": manager.role,
     "imageUrl": manager.imageUrl,
     "xUrl": manager.xUrl,
     "linkedinUrl": manager.linkedinUrl,
+    "salary":manager.salary
   }
 
 def create_manager():
@@ -26,11 +29,15 @@ def create_manager():
   username = data.get('username')
   password = data.get('password')
   imageUrl = data.get('imageUrl')
+  phone = data.get('phone')
+  email = data.get('email')
   xUrl = data.get('xUrl')
   linkedinUrl = data.get('linkedinUrl')
+  salary = data.get('salary')
+  active_status = data.get('active_status')
   usr_id = data.get('usr_id')
 
-  manager = Manager(name=name, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, usr_id=usr_id)
+  manager = Manager(username=username, password=password, name=name, email=email, phone=phone, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, salary=salary, active_status=active_status, usr_id=usr_id)
   db.session.add(manager)
 
   try:
@@ -62,43 +69,9 @@ def get_manager(id):
     return jsonify({'error': 'Manager not found'}), 404
   return jsonify(format_manager(manager))
 
-def update_manager(id):
-  manager = Manager.query.get(id)
-  if manager is None:
-    return jsonify({'error': 'Manager not found'}), 404
-  
-  data = request.json
-  if 'name' in data:
-    manager.name = data.get('name', manager.name)
-  if 'username' in data:
-    manager.username = data.get('username', manager.username)
-  if 'password' in data:
-    manager.password = data.get('password', manager.password)
-  if 'imageUrl' in data:
-    manager.imageUrl = data.get('imageUrl', manager.imageUrl)
-  if 'xUrl' in data:
-    manager.xUrl = data.get('xUrl', manager.xUrl)
-  if 'linkedinUrl' in data:
-    manager.linkedinUrl = data.get('linkedinUrl', manager.linkedinUrl)
-  
-  try:
-    db.session.commit()
-    return jsonify(format_manager(manager))
-  except Exception as e:
-    db.session.rollback()
-    return jsonify({'error': 'Error in update_manager()', 'details': str(e)}), 500
-  finally:
-    db.session.close()
-
 def get_managers():
   managers = Manager.query.order_by(Manager.timeCreated).all()
   return jsonify({'managers': [format_manager(manager) for manager in managers]})
-  
-  # employees = Employee.query.order_by(Employee.timeCreated).all()
-  # employees_list = []
-  # for employee in employees:
-  #   employees_list.append(format_employee(employee))
-  # return {'employees': employees_list}
 
 def batch_create_managers():
   manager_data = request.json
@@ -112,11 +85,16 @@ def batch_create_managers():
     username = manager_info.get('username')
     password = manager_info.get('password')
     imageUrl = manager_info.get('imageUrl')
+    email = manager_info.get('email')
+    phone = manager_info.get('phone')
     xUrl = manager_info.get('xUrl')
     linkedinUrl = manager_info.get('linkedinUrl')
+    salary = manager_info.get('salary')
+    active_status = manager_info.get('active_status')
     usr_id = manager_info.get('usr_id')
+    
 
-    manager = Manager(name=name, username=username, password=password, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, usr_id=usr_id)
+    manager = Manager(username=username, password=password, name=name, email=email, phone=phone, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, salary=salary, active_status=active_status, usr_id=usr_id)
     managers.append(manager)
   
   try:

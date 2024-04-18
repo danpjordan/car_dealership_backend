@@ -36,7 +36,8 @@ def user_middleware(roles):
             try:
                 payload = jwt.decode(token, JWT_SECRETKEY, algorithms=['HS256'])
                 if payload.get('role') not in roles:
-                    return jsonify({'error': 'Access failed (requires admin)'}), 403
+                    required_roles = ', '.join(roles)
+                    return jsonify({'error': f'Access failed requies role: {required_roles}'}), 403
             except jwt.ExpiredSignatureError:
                 return jsonify({'error': 'Access failed (unauthorized signature)'}), 403
             except jwt.InvalidTokenError:
@@ -44,7 +45,6 @@ def user_middleware(roles):
             return func()
         return wrapper
     return decorator
-
 
 def login():
   user=None
@@ -63,13 +63,13 @@ def login():
       return make_response({'error': 'invalid username or password'}, 400)
     
   except Exception as e:
-    return make_response({'error': 'unsuccessful login', 'details': str(e)}), 400
+    return make_response({'error': 'unsuccessful login'}), 400
   
   try:
     token = createToken(user)
     return setCookie(token, user)
   except Exception as e:
-    return make_response({'error': 'failed to create token', 'details': str(e)}), 400
+    return make_response({'error': 'failed to create token'}), 400
 
 def logout():
   try:

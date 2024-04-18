@@ -3,13 +3,17 @@
     "usr_id":384713,
     "name": "Emily Davis",
     "username": "emilyd",
-    "password": "ed123"
+    "password": "ed123",
+    "salary":250000,
+    "phone": "185-342-1985"
   },
   {
     "usr_id":482384,
     "name": "John Peterson",
     "username": "johnp",
     "password": "jp123",
-    "linkedinUrl": "linkedin.com/in/john-peterson"
+    "linkedinUrl": "linkedin.com/in/john-peterson",
+    "salary":200000,
+    "phone": "235-234-9182"
   }
 ]

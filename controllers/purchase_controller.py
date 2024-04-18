@@ -7,26 +7,23 @@ from controllers.salesrep_controller import *
 from controllers.customer_controller import *
 from controllers.car_controller import *
 
-
-
 from app import db
-
 
 def format_purchase(purchase):
   
   salesrep = db.session.get(SalesRep, purchase.sales_rep_id);
   customer = db.session.get(Customer, purchase.customer_id);
   car = db.session.get(Car, purchase.car_id);
-  
+
   return {
     "id": purchase.id,
+    "customer_id": customer.id,
+    "customer_username": customer.username,
+    "customer_name" : customer.name,
+    
     "sales_rep_id": salesrep.id,
     "sales_rep_username": salesrep.username,
     "sales_rep_name" : salesrep.name,
-    
-    "customer_id": customer.id,
-    "customer_username": customer.username,
-    "customer_name" : customer.cus_name,
    
     "car_id": car.id,
     "car_vin" : car.vin,
@@ -38,20 +35,23 @@ def format_purchase(purchase):
     "car_miles" : car.miles,
     "car_description" : car.description,
     
-    "time_purchased": purchase.time_purchased
     
+    "time_purchased": purchase.time_purchased
   }
   
 def create_purchase():
   data = request.json
+  
+  print(data)
 
   # Check for required fields
-  for field in ['sales_rep_id', 'customer_id', 'car_id']:
+  for field in ['salesrep_id', 'car_id']:
     if field not in data:
       return jsonify({'error': f'Missing required field: {field}'}), 400
   
-  sales_rep_id = data.get('sales_rep_id')
-  customer_id = data.get('customer_id')
+  sales_rep_id = data.get('salesrep_id')
+  # customer_id = data.get('customer_id')
+  customer_id = 481924
   car_id = data.get('car_id')
   
   purchase = Purchase(sales_rep_id=sales_rep_id, customer_id=customer_id, car_id=car_id)

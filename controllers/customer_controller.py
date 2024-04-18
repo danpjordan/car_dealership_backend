@@ -6,27 +6,18 @@ def format_customer(customer):
   return {
     "id": customer.id,
     "username": customer.username,
-    "name" : customer.cus_name,
+    "name" : customer.name,
     "email": customer.email,
     "phone": customer.phone,
   }
 
 def create_customer():
   data = request.json
-  if ('name') not in data:
-    return jsonify({'error': 'name not provided'}), 400
-  
   if ('username') not in data:
     return jsonify({'error': 'username not provided'}), 400
   
   if ('password') not in data:
     return jsonify({'error': 'password not provided'}), 400
-  
-  if ('email') not in data:
-    return jsonify({'error': 'email not provided'}), 400
-  
-  if ('phone') not in data:
-    return jsonify({'error': 'phone not provided'}), 400
   
   name = data.get('name')
   username = data.get('username')
@@ -34,8 +25,9 @@ def create_customer():
   email = data.get('email')
   phone = data.get('phone')
   usr_id = data.get('usr_id')
+  active_status = data.get('active_status')
   
-  customer = Customer(name=name, username=username, password=password, email=email, phone=phone, usr_id=usr_id)
+  customer = Customer(name=name, username=username, password=password, email=email, phone=phone, active_status=active_status, usr_id=usr_id)
   db.session.add(customer)
   
   try:
@@ -66,30 +58,6 @@ def get_customer(id):
     return jsonify({"error": "Customer not found"}), 404
   return format_customer(customer)
 
-def update_customer(id):
-  customer = db.session.get(Customer, id)
-  if not customer:
-    return jsonify({"error": "Customer not found"}), 404
-  
-  data = request.json
-  if ('name') in data:
-    customer.name = data.get('name')
-  if ('email') in data:
-    customer.email = data.get('email')
-  if ('phone') in data:
-    customer.phone = data.get('phone')
-  if ('cars_purchased') in data:
-    customer.cars_purchased = data.get('cars_purchased')
-  
-  try:
-    db.session.commit()
-    return format_customer(customer)
-  except Exception as e:
-    db.session.rollback()
-    return jsonify({'error': 'Error in update_customer()', 'details': str(e)}), 500
-  finally:
-    db.session.close()
-
 def get_customers():
   customers = Customer.query.order_by(Customer.timeCreated).all()
   return jsonify([format_customer(customer) for customer in customers])
@@ -99,15 +67,16 @@ def batch_create_customers():
   if not data:
     return jsonify({'error': 'No data provided'}), 400
   customers = []
-  for customer in data:
-    name = customer.get('name')
-    username = customer.get('username')
-    password = customer.get('password')
-    email = customer.get('email')
-    phone = customer.get('phone')
-    usr_id = customer.get('usr_id')
+  for customer_info in data:
+    name = customer_info.get('name')
+    username = customer_info.get('username')
+    password = customer_info.get('password')
+    email = customer_info.get('email')
+    phone = customer_info.get('phone')
+    usr_id = customer_info.get('usr_id')
+    active_status = customer_info.get('active_status')
     
-    customer = Customer(name=name, username=username, password=password, email=email, phone=phone, usr_id=usr_id)
+    customer = Customer(name=name, username=username, password=password, email=email, phone=phone, usr_id=usr_id, active_status=active_status)
     customers.append(customer)
   try:
     db.session.add_all(customers)
@@ -117,4 +86,5 @@ def batch_create_customers():
     db.session.rollback()
     return jsonify({'error': 'Error in batch_create_customers()', 'details': str(e)}), 500
   finally:
-    db.session.close() 
+    db.session.close()
+

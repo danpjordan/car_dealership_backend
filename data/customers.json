@@ -1,9 +1,9 @@
 [
   {
-    "name": "Jane Miller",
-    "username": "janem",
-    "password": "jm123", 
-    "email": "jane.miller@example.com",
+    "name": "Kane Killer",
+    "username": "kanek",
+    "password": "kk123", 
+    "email": "kane.killer@example.com",
     "phone": "134-818-1212",
     "usr_id":481924
   },
@@ -22,5 +22,14 @@
     "email": "alex.t@gmail.com",
     "phone": "612-345-6789",
     "usr_id":576728
+  },
+  {
+    "name": "Kyle Graph",
+    "username": "kyleg",
+    "password": "kg123", 
+    "email": "kyle.dog@gmail.com",
+    "phone": "184-491-2849",
+    "usr_id":194792,
+    "active_status":"N"
   }
 ]
