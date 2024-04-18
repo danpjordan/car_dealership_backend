@@ -24,6 +24,26 @@ def get_manager_api(id):
 def get_managers_api():
   return get_managers()
 
+@app.route('/managers/user/', methods = ['GET'])
+def get_m_customer_api():
+  return get_m_customer()
+
+@app.route('/managers/salesreps/', methods = ['GET'])
+def get_m_salesreps_api():
+  return get_m_salesreps()
+
+@app.route('/managers/purchases/', methods = ['GET'])
+@user_middleware(['manager'])
+def get_m_purchases_api():
+  return get_m_purchases()
+
+
+@app.route('/managers/cars/', methods = ['GET'])
+def get_m_cars_api():
+  return get_m_cars()
+
+
+
 @app.route('/batch-create-managers/', methods=['POST'])
 def batch_create_managers_api():
   return batch_create_managers()

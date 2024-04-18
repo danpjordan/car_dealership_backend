@@ -13,7 +13,8 @@ def format_car(car):
     "price" : car.price,
     "miles" : car.miles,
     "description" : car.description,
-    "timeCreated" : car.timeCreated
+    "timeCreated" : car.timeCreated,
+    "is_sold" : car.is_sold
   }
   
 def create_car():
@@ -126,3 +127,8 @@ def batch_create_cars():
     return jsonify({'error': 'Failed to create batch cars', 'details': str(e)}), 500
   finally:
     db.session.close()
+
+def get_m_cars():
+  cars = Car.query.order_by(Car.timeCreated.asc()).all()
+  return jsonify({'cars': [format_car(car) for car in cars]})
+  

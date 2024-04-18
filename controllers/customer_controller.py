@@ -88,3 +88,6 @@ def batch_create_customers():
   finally:
     db.session.close()
 
+def get_m_customer():
+  customers = Customer.query.order_by(Customer.timeCreated).all()
+  return jsonify({'costomers': [format_customer(customer) for customer in customers]})

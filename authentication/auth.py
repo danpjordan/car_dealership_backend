@@ -3,7 +3,10 @@ from app import JWT_SECRETKEY
 import jwt
 from functools import wraps
 from datetime import datetime, timedelta
+from models.customer import *
 from models.user import *
+from controllers.customer_controller import *
+
 
 def createToken(user):
   token = jwt.encode(
@@ -78,23 +81,28 @@ def logout():
   except Exception as e:
     return make_response({'error': 'logout unsuccessful', 'details': str(e)}), 400
 
+def strong_password(password):
+  return any(c.isupper() for c in password) and len(password) > 6
+
 def create_user():
   data = request.json
   if ('username') not in data:
     return make_response({'error': 'username not provided'}), 400
   if ('password') not in data:
     return make_response({'error': 'password not provided'}), 400
+  
+  password = data.get('password')
+  if not strong_password(password):
+    return make_response({'error': 'password must be 6 characters and contain a capitol letter'}), 400
    
   username = data.get('username')
-  role = data.get('role')
-  password = data.get('password')
-  user = User(username, password, role)
   
-  db.session.add(user)
+  customer = Customer(username, password)
+  db.session.add(customer)
 
   try:
     db.session.commit()
-    return format_user(user)
+    return format_customer(customer)
   except Exception as e:
     db.session.rollback()
     return make_response({'error': 'Error in create_employee()', 'details': str(e)}), 500

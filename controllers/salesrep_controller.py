@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from models.salesrep import SalesRep
-from app import db
+from app import app, db
 
 
 def format_salesrep(salesrep):
@@ -16,6 +16,17 @@ def format_salesrep(salesrep):
     "xUrl": salesrep.xUrl,
     "linkedinUrl": salesrep.linkedinUrl,
     "salary": salesrep.salary
+  }
+
+def format_salesrep_for_manager(salesrep):
+  return {
+    "id": salesrep.id,
+    "username": salesrep.username,
+    "name" : salesrep.name,
+    "email": salesrep.email,
+    "phone": salesrep.phone,
+    "manager_name" : salesrep.manager_name,
+    "salary" : salesrep.salary 
   }
 
 def create_salesrep():
@@ -127,4 +138,10 @@ def batch_create_salesreps():
   finally:
     db.session.close()
 
+
+def get_m_salesreps():
+  with app.app_context():
+    manager_salesrep_view = db.Table('manager_salesrep_view', db.MetaData(), autoload_with=db.engine)
+  salesreps = db.session.query(manager_salesrep_view).order_by(manager_salesrep_view.c.timeCreated.asc()).all()
+  return jsonify({'salesreps': [format_salesrep_for_manager(salesrep) for salesrep in salesreps]})
 

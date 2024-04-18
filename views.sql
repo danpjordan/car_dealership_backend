@@ -7,6 +7,7 @@ CREATE VIEW customer_car_view AS
     "imageUrl",
     price,
     miles,
+    "timeCreated"
     description
     FROM car
    WHERE is_sold::text = 'N'::text;
@@ -33,6 +34,21 @@ CREATE VIEW salerep_customer_view AS
   FROM customer c_
     JOIN "user" u_ ON c_.id = u_.id
   WHERE u_.active_status::text = 'Y'::text;
+
+CREATE VIEW manager_salesrep_view AS
+ SELECT s_.id,
+    su_.username,
+    su_.name,
+    su_.email,
+    su_.phone,
+    e_.salary,
+    su_."timeCreated",
+    mu_.name AS manager_name
+   FROM sales_rep s_
+     JOIN "user" su_ ON s_.id = su_.id
+     JOIN manager m_ ON s_.manager_id = m_.id
+     JOIN "user" mu_ ON m_.id = mu_.id
+     JOIN employee e_ ON s_.id = e_.id;
 
 
 -- Not a view but is a quary

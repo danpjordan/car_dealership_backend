@@ -1,6 +1,8 @@
 from flask import jsonify, request
 from models.manager import Manager
+
 from app import db
+
 
 def format_manager(manager): 
   return {
@@ -92,7 +94,6 @@ def batch_create_managers():
     salary = manager_info.get('salary')
     active_status = manager_info.get('active_status')
     usr_id = manager_info.get('usr_id')
-    
 
     manager = Manager(username=username, password=password, name=name, email=email, phone=phone, imageUrl=imageUrl, xUrl=xUrl, linkedinUrl=linkedinUrl, salary=salary, active_status=active_status, usr_id=usr_id)
     managers.append(manager)
@@ -106,3 +107,5 @@ def batch_create_managers():
     return jsonify({'error': 'Error in batch_create_managers()', 'details': str(e)}), 500
   finally:
     db.session.close()
+
+
