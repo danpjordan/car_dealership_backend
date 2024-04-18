@@ -3,7 +3,6 @@ from models.manager import Manager
 
 from app import db
 
-
 def format_manager(manager): 
   return {
     "id": manager.id,

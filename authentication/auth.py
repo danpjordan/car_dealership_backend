@@ -67,7 +67,6 @@ def login():
     
   except Exception as e:
     return make_response({'error': 'unsuccessful login'}), 400
-  
   try:
     token = createToken(user)
     return setCookie(token, user)
@@ -84,7 +83,7 @@ def logout():
 def strong_password(password):
   return any(c.isupper() for c in password) and len(password) > 6
 
-def create_user():
+def create_new_customer():
   data = request.json
   if ('username') not in data:
     return make_response({'error': 'username not provided'}), 400
@@ -96,7 +95,6 @@ def create_user():
     return make_response({'error': 'password must be 6 characters and contain a capitol letter'}), 400
    
   username = data.get('username')
-  
   customer = Customer(username, password)
   db.session.add(customer)
 

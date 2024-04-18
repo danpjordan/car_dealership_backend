@@ -24,7 +24,7 @@ def get_manager_api(id):
 def get_managers_api():
   return get_managers()
 
-@app.route('/manager/user/', methods = ['GET'])
+@app.route('/manager/customers/', methods = ['GET'])
 @user_middleware(['manager'])
 def get_m_customer_api():
   return get_m_customer()
@@ -72,7 +72,7 @@ def get_salesreps_api():
 def batch_create_salesreps_api():
   return batch_create_salesreps()
 
-@app.route('/salesrep/user/', methods = ['GET'])
+@app.route('/salesrep/customers/', methods = ['GET'])
 @user_middleware(['sales rep'])
 def get_s_customer_api():
   return get_s_customer()
@@ -188,9 +188,9 @@ def login_api():
 def logout_api():
   return logout()
 
-@app.route('/users/', methods = ['POST'])
-def create_user_api():
-  return create_user()
+@app.route('/new-customer/', methods = ['POST'])
+def create_new_customer_api():
+  return create_new_customer()
 
 #adminpage for testing
 @app.route('/adminpage/', methods = ['GET'])

@@ -53,13 +53,13 @@ def create_purchase():
   customer_id = payload.get('userId')
   sales_rep_id = data.get('salesrep_id')
   car_id = data.get('car_id')
-  
+
   purchase = Purchase(sales_rep_id=sales_rep_id, customer_id=customer_id, car_id=car_id)
   db.session.add(purchase)
-  
-  print(sales_rep_id, customer_id, car_id)
+    
   try:
     db.session.commit()
+    
     car = Car.query.get(car_id)
     car.is_sold = 'Y'
     db.session.commit()

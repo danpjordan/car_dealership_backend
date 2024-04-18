@@ -14,7 +14,8 @@ def format_car(car):
     "miles" : car.miles,
     "description" : car.description,
     "timeCreated" : car.timeCreated,
-  }
+    "is_sold" : car.is_sold
+    }
   
 def create_car():
   data = request.json
@@ -93,8 +94,7 @@ def get_unsold_cars():
   with app.app_context():
     customer_car_view = db.Table('customer_car_view', db.MetaData(), autoload_with=db.engine)
   cars = db.session.query(customer_car_view).order_by(customer_car_view.c.timeCreated.asc()).all()
-  
-  return jsonify({'car': [format_car(car) for car in cars]})
+  return jsonify({'cars': [format_car(car) for car in cars]})
 
 def batch_create_cars():
   car_data = request.json
