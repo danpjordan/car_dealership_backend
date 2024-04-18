@@ -5,7 +5,6 @@ from controllers.salesrep_controller import *
 from controllers.manager_controller import *
 from controllers.employee_controller import *
 from controllers.purchase_controller import *
-
 from app import app
 
 @app.route('/managers/', methods = ['POST'])
@@ -119,8 +118,6 @@ def batch_create_customers_api():
 @user_middleware(['customer'])
 def get_c_purchases_api():
   return get_c_purchases()
-
-
 
 @app.route('/purchases/', methods = ['POST'])
 def create_purchase_api():

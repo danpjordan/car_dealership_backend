@@ -7,7 +7,8 @@ CREATE VIEW customer_car_view AS
     "imageUrl",
     price,
     miles,
-    "timeCreated"
+    "timeCreated",
+    is_sold
     description
     FROM car
    WHERE is_sold::text = 'N'::text;

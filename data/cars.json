@@ -8,7 +8,8 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 8500,
     "miles": 85000,
-    "description": "This Toyota Corolla is a reliable and fuel-efficient sedan. It has been well-maintained and is in great condition. Perfect for daily commuting."
+    "description": "This Toyota Corolla is a reliable and fuel-efficient sedan. It has been well-maintained and is in great condition. Perfect for daily commuting.",
+    "is_sold":"Y"
   },
   {
     "car_id": 5192,
@@ -64,8 +65,7 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 14500,
     "miles": 35000,
-    "description": "Sleek and efficient, this Hyundai Elantra is perfect for city driving. Enjoy its modern features and excellent fuel economy on your daily commute.",
-    "is_sold": "Y"
+    "description": "Sleek and efficient, this Hyundai Elantra is perfect for city driving. Enjoy its modern features and excellent fuel economy on your daily commute."
   },
   {
     "car_id": 9182,
@@ -98,8 +98,7 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 17500,
     "miles": 28000,
-    "description": "Efficiency meets style in this Volkswagen Jetta. Enjoy its spacious interior, smooth ride, and impressive fuel economy on your next road trip.",
-    "is_sold": "Y"
+    "description": "Efficiency meets style in this Volkswagen Jetta. Enjoy its spacious interior, smooth ride, and impressive fuel economy on your next road trip."
   },
   {
     "car_id": 5982,
@@ -130,7 +129,7 @@
     "model": "Optima",
     "year": 2016,
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
-    "is_sold": "Y"
+    "is_sold":"Y"
   },
   {
     "car_id": 1028,
@@ -141,7 +140,8 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 5800,
     "miles": 89000,
-    "description": "The Chevrolet Cobalt offers practicality and efficiency. With its compact size and fuel-efficient engine, it's perfect for city driving."
+    "description": "The Chevrolet Cobalt offers practicality and efficiency. With its compact size and fuel-efficient engine, it's perfect for city driving.",
+    "is_sold": "Y"
   },
   {
     "car_id": 2058,
@@ -163,8 +163,7 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 12500,
     "miles": 42000,
-    "description": "Small in size, big in value. The Honda Fit is known for its versatile interior and excellent fuel efficiency. Perfect for urban living.",
-    "is_sold": "Y"
+    "description": "Small in size, big in value. The Honda Fit is known for its versatile interior and excellent fuel efficiency. Perfect for urban living."
   },
   {
     "car_id": 3018,
@@ -175,7 +174,8 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 6500,
     "miles": 95000,
-    "description": "Compact and reliable, the Ford Focus is a practical choice for daily commuting. Enjoy its nimble handling and fuel efficiency."
+    "description": "Compact and reliable, the Ford Focus is a practical choice for daily commuting. Enjoy its nimble handling and fuel efficiency.",
+    "is_sold":"Y"
   },
   {
     "car_id": 9385,
@@ -208,8 +208,7 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 19500,
     "miles": 36000,
-    "description": "Experience luxury and performance with the Nissan Maxima. Its upscale interior and powerful V6 engine make every drive a pleasure.",
-    "is_sold": "Y"
+    "description": "Experience luxury and performance with the Nissan Maxima. Its upscale interior and powerful V6 engine make every drive a pleasure."
   },
   {
     "car_id": 8375,
@@ -231,7 +230,6 @@
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "price": 7500,
     "miles": 98000,
-    "description": "Sporty and fun, the Acura RSX offers a thrilling driving experience. With its responsive handling and sleek design, it's sure to impress.",
-    "is_sold": "Y"
+    "description": "Sporty and fun, the Acura RSX offers a thrilling driving experience. With its responsive handling and sleek design, it's sure to impress."
   }
 ]

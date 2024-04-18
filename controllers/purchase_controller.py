@@ -42,25 +42,30 @@ def format_purchase(purchase):
   
 def create_purchase():
   data = request.json
-  
-  print(data)
 
   # Check for required fields
   for field in ['salesrep_id', 'car_id']:
     if field not in data:
       return jsonify({'error': f'Missing required field: {field}'}), 400
   
+  token = request.cookies.get('auth')
+  payload = jwt.decode(token, JWT_SECRETKEY, algorithms=['HS256'])
+  customer_id = payload.get('userId')
   sales_rep_id = data.get('salesrep_id')
-  # customer_id = data.get('customer_id')
-  customer_id = 481924
   car_id = data.get('car_id')
   
   purchase = Purchase(sales_rep_id=sales_rep_id, customer_id=customer_id, car_id=car_id)
   db.session.add(purchase)
   
+  print(sales_rep_id, customer_id, car_id)
   try:
     db.session.commit()
+    car = Car.query.get(car_id)
+    car.is_sold = 'Y'
+    db.session.commit()
+    
     return format_purchase(purchase)
+  
   except Exception as e:
     db.session.rollback()
     return jsonify({'error': 'Error in create_purchase()', 'details': str(e)}), 500
@@ -158,4 +163,5 @@ def get_c_purchases():
   customer_id = payload.get('userId')
   purchases = Purchase.query.filter_by(customer_id=customer_id).order_by(Purchase.time_purchased).all()
   return jsonify({'purchases': [format_purchase(purchase) for purchase in purchases]})
+
 
