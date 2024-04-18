@@ -21,32 +21,33 @@ def get_manager_api(id):
   return get_manager(id)
 
 @app.route('/managers/', methods = ['GET'])
+@user_middleware(['manager'])
 def get_managers_api():
   return get_managers()
 
-@app.route('/managers/user/', methods = ['GET'])
+@app.route('/manager/user/', methods = ['GET'])
+@user_middleware(['manager'])
 def get_m_customer_api():
   return get_m_customer()
 
-@app.route('/managers/salesreps/', methods = ['GET'])
+@app.route('/manager/salesreps/', methods = ['GET'])
+@user_middleware(['manager'])
 def get_m_salesreps_api():
   return get_m_salesreps()
 
-@app.route('/managers/purchases/', methods = ['GET'])
+@app.route('/manager/purchases/', methods = ['GET'])
 @user_middleware(['manager'])
 def get_m_purchases_api():
   return get_m_purchases()
 
-
-@app.route('/managers/cars/', methods = ['GET'])
+@app.route('/manager/cars/', methods = ['GET'])
 def get_m_cars_api():
-  return get_m_cars()
-
-
+  return get_all_cars()
 
 @app.route('/batch-create-managers/', methods=['POST'])
 def batch_create_managers_api():
   return batch_create_managers()
+
 
 @app.route('/salesreps/', methods = ['POST'])
 def create_salesrep_api():
@@ -71,6 +72,22 @@ def get_salesreps_api():
 @app.route('/batch-create-salesreps/', methods=['POST'])
 def batch_create_salesreps_api():
   return batch_create_salesreps()
+
+@app.route('/salesrep/user/', methods = ['GET'])
+@user_middleware(['sales rep'])
+def get_s_customer_api():
+  return get_s_customer()
+
+@app.route('/salesrep/purchases/', methods = ['GET'])
+@user_middleware(['sales rep'])
+def get_s_purchases_api():
+  return get_s_purchases()
+
+@app.route('/salesrep/cars/', methods = ['GET'])
+@user_middleware(['sales rep'])
+def get_s_cars_api():
+  return get_all_cars()
+
 
 # create a customer
 @app.route('/customers/', methods = ['POST'])
@@ -97,6 +114,13 @@ def get_customers_api():
 @app.route('/batch-create-customers', methods=['POST'])
 def batch_create_customers_api():
   return batch_create_customers()
+
+@app.route('/customer/purchases/', methods = ['GET'])
+@user_middleware(['customer'])
+def get_c_purchases_api():
+  return get_c_purchases()
+
+
 
 @app.route('/purchases/', methods = ['POST'])
 def create_purchase_api():

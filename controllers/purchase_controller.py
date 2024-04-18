@@ -134,7 +134,6 @@ def batch_create_purchases():
     return jsonify({'error': 'Failed to create batch purchase', 'details': str(e)}), 500
   finally:
     db.session.close()
-    
 
 def get_m_purchases():
   token = request.cookies.get('auth')
@@ -144,5 +143,19 @@ def get_m_purchases():
   sales_rep_ids = [sales_rep.id for sales_rep in sales_reps_managed]
   purchases = Purchase.query.filter(Purchase.sales_rep_id.in_(sales_rep_ids)).order_by(Purchase.time_purchased).all()
   
+  return jsonify({'purchases': [format_purchase(purchase) for purchase in purchases]})
+
+def get_s_purchases():
+  token = request.cookies.get('auth')
+  payload = jwt.decode(token, JWT_SECRETKEY, algorithms=['HS256'])
+  sale_rep_id = payload.get('userId')
+  purchases = Purchase.query.filter_by(sales_rep_id=sale_rep_id).order_by(Purchase.time_purchased).all()
+  return jsonify({'purchases': [format_purchase(purchase) for purchase in purchases]})
+
+def get_c_purchases():
+  token = request.cookies.get('auth')
+  payload = jwt.decode(token, JWT_SECRETKEY, algorithms=['HS256'])
+  customer_id = payload.get('userId')
+  purchases = Purchase.query.filter_by(customer_id=customer_id).order_by(Purchase.time_purchased).all()
   return jsonify({'purchases': [format_purchase(purchase) for purchase in purchases]})
 

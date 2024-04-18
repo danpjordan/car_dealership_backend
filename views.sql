@@ -30,10 +30,12 @@ CREATE VIEW salerep_customer_view AS
     u_.name,
     u_.username,
     u_.email,
-    u_.phone
+    u_.phone,
+    u_."timeCreated"
   FROM customer c_
     JOIN "user" u_ ON c_.id = u_.id
   WHERE u_.active_status::text = 'Y'::text;
+
 
 CREATE VIEW manager_salesrep_view AS
  SELECT s_.id,

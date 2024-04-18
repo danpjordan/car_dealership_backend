@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from models.customer import Customer
-from app import db
+from app import app, db
 
 def format_customer(customer):
   return {
@@ -91,3 +91,10 @@ def batch_create_customers():
 def get_m_customer():
   customers = Customer.query.order_by(Customer.timeCreated).all()
   return jsonify({'costomers': [format_customer(customer) for customer in customers]})
+
+def get_s_customer():
+  with app.app_context():
+    salesrep_customer_view = db.Table('salesrep_customer_view', db.MetaData(), autoload_with=db.engine)
+  salesreps = db.session.query(salesrep_customer_view).order_by(salesrep_customer_view.c.timeCreated.asc()).all()
+
+  return jsonify({'costomers': [format_customer(salesrep) for salesrep in salesreps]})
