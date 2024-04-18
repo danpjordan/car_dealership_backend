@@ -8,10 +8,10 @@ CREATE VIEW customer_car_view AS
     price,
     miles,
     "timeCreated",
-    is_sold
+    is_sold,
     description
     FROM car
-   WHERE is_sold::text = 'N'::text;
+  WHERE is_sold::text = 'N'::text;
 
 
 CREATE VIEW customer_team_view AS
@@ -26,7 +26,7 @@ CREATE VIEW customer_team_view AS
    WHERE u_.active_status::text = 'Y'::text;
 
 
-CREATE VIEW salerep_customer_view AS
+CREATE VIEW salesrep_customer_view AS
   SELECT u_.id,
     u_.name,
     u_.username,

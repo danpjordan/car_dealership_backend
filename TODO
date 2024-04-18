@@ -1,16 +1,17 @@
 TODO
 \customer\purchases - show their purchases
 
-\salesrep\user\ filter by !archived
+\salesrep\customers\ - filter by !archived
 \salesrep\cars - show all cars
 \salesrep\purchases - show thier purchases
+\salesrep\purchases\total
 
-\manager\user\
-\manager\salesreps
+\manager\customers\
+\manager\salesreps -- changed to show all salesreps w/ manager
 \manager\purchases
-\manager\cars - show all cars
+\manager\purchases\total
+\manager\customers - show all customers 
 
-\user [patch] edit user data
+\user [patch] edit user data -- changed to patch
 \deactivate - set user to deactivate
-
-
+add cars_purchased count to manager\customers
