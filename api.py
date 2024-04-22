@@ -56,6 +56,11 @@ def get_m_salesreps_api():
 def get_m_purchases_api():
   return get_m_purchases()
 
+@app.route('/manager/purchases/total/', methods = ['GET'])
+@user_middleware(['manager'])
+def get_m_purchases_total_api():
+  return get_m_purchases_total()
+
 @app.route('/manager/cars/', methods = ['GET'])
 def get_m_cars_api():
   return get_all_cars()
@@ -63,6 +68,7 @@ def get_m_cars_api():
 @app.route('/batch-create-managers/', methods=['POST'])
 def batch_create_managers_api():
   return batch_create_managers()
+
 
 @app.route('/salesreps/', methods = ['POST'])
 def create_salesrep_api():
@@ -97,6 +103,11 @@ def get_s_customer_api():
 @user_middleware(['sales rep'])
 def get_s_purchases_api():
   return get_s_purchases()
+
+@app.route('/salesrep/purchases/total/', methods = ['GET'])
+@user_middleware(['sales rep'])
+def get_s_purchases_total_api():
+  return get_s_purchases_total()
 
 @app.route('/salesrep/cars/', methods = ['GET'])
 @user_middleware(['sales rep'])
