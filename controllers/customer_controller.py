@@ -11,6 +11,16 @@ def format_customer(customer):
     "phone": customer.phone,
   }
 
+def format_customer_manager(customer):
+  return {
+    "id": customer.id,
+    "username": customer.username,
+    "name" : customer.name,
+    "email": customer.email,
+    "phone": customer.phone,
+    "cars_purchased" : customer.cars_purchased
+  }
+
 def create_customer():
   data = request.json
   if ('username') not in data:
@@ -89,12 +99,15 @@ def batch_create_customers():
     db.session.close()
 
 def get_m_customer():
-  customers = Customer.query.order_by(Customer.timeCreated).all()
-  return jsonify({'costomers': [format_customer(customer) for customer in customers]})
+  with app.app_context():
+    manager_customer_view = db.Table('manager_customer_view', db.MetaData(), autoload_with=db.engine)
+  customers = db.session.query(manager_customer_view).order_by(manager_customer_view.c.timeCreated.asc()).all()
+  
+  return jsonify({'costomers': [format_customer_manager(customer) for customer in customers]})
 
 def get_s_customer():
   with app.app_context():
     salesrep_customer_view = db.Table('salesrep_customer_view', db.MetaData(), autoload_with=db.engine)
-  salesreps = db.session.query(salesrep_customer_view).order_by(salesrep_customer_view.c.timeCreated.asc()).all()
+  customers = db.session.query(salesrep_customer_view).order_by(salesrep_customer_view.c.timeCreated.asc()).all()
 
-  return jsonify({'costomers': [format_customer(salesrep) for salesrep in salesreps]})
+  return jsonify({'costomers': [format_customer(customer) for customer in customers]})

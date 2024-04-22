@@ -141,7 +141,6 @@ def batch_create_salesreps():
   finally:
     db.session.close()
 
-
 def get_m_salesreps():
   with app.app_context():
     manager_salesrep_view = db.Table('manager_salesrep_view', db.MetaData(), autoload_with=db.engine)

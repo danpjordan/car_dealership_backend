@@ -53,6 +53,19 @@ CREATE VIEW manager_salesrep_view AS
      JOIN "user" mu_ ON m_.id = mu_.id
      JOIN employee e_ ON s_.id = e_.id;
 
+CREATE VIEW manager_customer_view AS 
+ SELECT u_.id,
+    u_.name,
+    u_.username,
+    u_.email,
+    u_.phone,
+    u_."timeCreated",
+    count(p_.car_id) AS cars_purchased
+   FROM customer c_
+     JOIN "user" u_ ON c_.id = u_.id
+     LEFT JOIN purchase p_ ON c_.id = p_.customer_id
+  GROUP BY u_.id, c_.id;
+
 
 -- Not a view but is a quary
   SELECT p_.id,
