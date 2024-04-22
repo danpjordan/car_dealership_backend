@@ -46,10 +46,3 @@ class User(db.Model):
       exisitng_user = User.query.filter_by(id=random_id).first()
       if not exisitng_user:
         return random_id
-      
-def format_user(user):
-  return {
-    "username" : user.username,
-    "id": user.id,
-    "role": user.role,
-  }

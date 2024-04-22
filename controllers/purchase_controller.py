@@ -144,8 +144,10 @@ def get_m_purchases():
   token = request.cookies.get('auth')
   payload = jwt.decode(token, JWT_SECRETKEY, algorithms=['HS256'])
   manager_id = payload.get('userId')
+  
   sales_reps_managed = SalesRep.query.filter_by(manager_id=manager_id).all()
   sales_rep_ids = [sales_rep.id for sales_rep in sales_reps_managed]
+  
   purchases = Purchase.query.filter(Purchase.sales_rep_id.in_(sales_rep_ids)).order_by(Purchase.time_purchased).all()
   
   return jsonify({'purchases': [format_purchase(purchase) for purchase in purchases]})

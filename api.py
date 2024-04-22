@@ -5,7 +5,13 @@ from controllers.salesrep_controller import *
 from controllers.manager_controller import *
 from controllers.employee_controller import *
 from controllers.purchase_controller import *
+from controllers.user_controller import *
 from app import app
+
+@app.route('/user/', methods = ['PUT', 'PATCH'])
+def update_user_api():
+  print("test")
+  return update_user()
 
 @app.route('/managers/', methods = ['POST'])
 def create_manager_api():
@@ -86,7 +92,6 @@ def get_s_purchases_api():
 @user_middleware(['sales rep'])
 def get_s_cars_api():
   return get_all_cars()
-
 
 # create a customer
 @app.route('/customers/', methods = ['POST'])

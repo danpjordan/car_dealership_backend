@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from models.customer import *
 from models.user import *
 from controllers.customer_controller import *
-
+from controllers.user_controller import *
 
 def createToken(user):
   token = jwt.encode(
@@ -81,7 +81,7 @@ def logout():
     return make_response({'error': 'logout unsuccessful', 'details': str(e)}), 400
 
 def strong_password(password):
-  return any(c.isupper() for c in password) and len(password) > 6
+  return any(c.isupper() for c in password) and len(password) >= 6
 
 def create_new_customer():
   data = request.json

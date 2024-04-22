@@ -62,6 +62,7 @@ def create_salesrep():
   finally:
     db.session.close()
 
+# delete
 def delete_salesrep(id):
   salesrep = SalesRep.query.get(id)
   if not salesrep:
@@ -75,6 +76,7 @@ def delete_salesrep(id):
   finally:
     db.session.close()
 
+## delete
 def update_salesrep(id):
   salesrep = SalesRep.query.get(id)
   if not salesrep:
@@ -95,7 +97,8 @@ def update_salesrep(id):
     return jsonify({'error': 'Error in update_salesrep()', 'details': str(e)}), 500
   finally:
     db.session.close()
-  
+
+## delete
 def get_salesrep(id):
   salesrep = SalesRep.query.get(id)
   if not salesrep:
@@ -103,7 +106,7 @@ def get_salesrep(id):
   return jsonify(format_salesrep(salesrep))
 
 def get_salesreps():
-  salesreps = SalesRep.query.order_by(SalesRep.timeCreated).all()
+  salesreps = SalesRep.query.filter(SalesRep.active_status == 'Y').order_by(SalesRep.timeCreated).all()
   return jsonify([format_salesrep(salesrep) for salesrep in salesreps])
 
 def batch_create_salesreps():
