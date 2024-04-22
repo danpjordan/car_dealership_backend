@@ -90,10 +90,27 @@ def update_car(id):
   finally:
     db.session.close()
     
-def get_unsold_cars():
+def get_unsold_cars(make=None, model=None, year=None, miles=None):
   with app.app_context():
     customer_car_view = db.Table('customer_car_view', db.MetaData(), autoload_with=db.engine)
   cars = db.session.query(customer_car_view).order_by(customer_car_view.c.timeCreated.asc()).all()
+  
+  if make:
+    filtered_cars = [car for car in cars if car.make == make]
+    cars = filtered_cars
+
+  if model:
+    filtered_cars = [car for car in cars if car.model == model]
+    cars = filtered_cars
+    
+  if year:
+    filtered_cars = [car for car in cars if int(car.year) >= int(year)]
+    cars = filtered_cars
+    
+  if miles:
+    filtered_cars = [car for car in cars if int(car.miles) <= int(miles)]
+    cars = filtered_cars
+    
   return jsonify({'cars': [format_car(car) for car in cars]})
 
 def batch_create_cars():

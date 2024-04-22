@@ -194,7 +194,11 @@ def update_car_api(id):
 # get all unsold cars
 @app.route('/cars/', methods = ['GET'])
 def get_unsold_cars_api():
-  return get_unsold_cars()
+  make = request.args.get('make')
+  model = request.args.get('model')
+  year = request.args.get('year')
+  miles = request.args.get('miles')
+  return get_unsold_cars(make, model, year, miles)
 
 # create batch cars
 @app.route('/batch-create-cars/', methods=['POST'])
