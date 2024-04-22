@@ -106,5 +106,5 @@ def batch_create_cars():
     db.session.close()
 
 def get_all_cars():
-  cars = Car.query.order_by(Car.timeCreated.asc()).all()
+  cars = Car.query.order_by(Car.is_sold.asc(), Car.timeCreated.asc()).all()
   return jsonify({'cars': [format_car(car) for car in cars]})

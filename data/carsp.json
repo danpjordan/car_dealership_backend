@@ -5,7 +5,7 @@
     "make": "Toyota",
     "model": "Corolla",
     "year": 2010,
-    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "imageUrl": "https://i.imgur.com/gPW3wTy.jpeg",
     "price": 8500,
     "miles": 85000,
     "description": "This Toyota Corolla is a reliable and fuel-efficient sedan. It has been well-maintained and is in great condition. Perfect for daily commuting.",
@@ -30,7 +30,7 @@
     "model": "Accord",
     "year": 2005,
     "is_sold":"Y",
-    "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
+    "imageUrl": "https://i.imgur.com/RdDxC8i.jpeg",
     "price": 6800,
     "miles": 105000,
     "description": "The Honda Accord is known for its reliability and comfort. This one comes with a spacious interior and smooth ride, making it a great family car."
