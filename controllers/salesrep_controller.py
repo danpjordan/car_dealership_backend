@@ -62,48 +62,45 @@ def create_salesrep():
   finally:
     db.session.close()
 
-# delete
-def delete_salesrep(id):
-  salesrep = SalesRep.query.get(id)
-  if not salesrep:
-    return jsonify({"error": "SalesRep not found"}), 404
-  try:
-    db.session.delete(salesrep)
-    db.session.commit()
-    return f'SalesRep (id: {id}) deleted!'
-  except Exception as e:
-    return jsonify({'error': 'Error in delete_salesrep()', 'details': str(e)}), 500
-  finally:
+# def delete_salesrep(id):
+#   salesrep = SalesRep.query.get(id)
+#   if not salesrep:
+#     return jsonify({"error": "SalesRep not found"}), 404
+#   try:
+#     db.session.delete(salesrep)
+#     db.session.commit()
+#     return f'SalesRep (id: {id}) deleted!'
+#   except Exception as e:
+#     return jsonify({'error': 'Error in delete_salesrep()', 'details': str(e)}), 500
+#   finally:
+#     db.session.close()
+
+# def update_salesrep(id):
+#   salesrep = SalesRep.query.get(id)
+#   if not salesrep:
+#     return jsonify({"error": "SalesRep not found"}), 404
+  
+#   data = request.json
+#   salesrep.imageUrl = data.get('imageUrl', salesrep.imageUrl)
+#   salesrep.xUrl = data.get('xUrl', salesrep.xUrl)
+#   salesrep.linkedinUrl = data.get('linkedinUrl', salesrep.linkedinUrl)
+#   salesrep.manager_id = data.get('manager_id', salesrep.manager_id)
+#   salesrep.salary = data.get('salary', salesrep.salary)
+  
+#   try:
+#     db.session.commit()
+#     return format_salesrep(salesrep)
+#   except Exception as e:
+#     db.session.rollback()
+#     return jsonify({'error': 'Error in update_salesrep()', 'details': str(e)}), 500
+#   finally:
     db.session.close()
 
-## delete
-def update_salesrep(id):
-  salesrep = SalesRep.query.get(id)
-  if not salesrep:
-    return jsonify({"error": "SalesRep not found"}), 404
-  
-  data = request.json
-  salesrep.imageUrl = data.get('imageUrl', salesrep.imageUrl)
-  salesrep.xUrl = data.get('xUrl', salesrep.xUrl)
-  salesrep.linkedinUrl = data.get('linkedinUrl', salesrep.linkedinUrl)
-  salesrep.manager_id = data.get('manager_id', salesrep.manager_id)
-  salesrep.salary = data.get('salary', salesrep.salary)
-  
-  try:
-    db.session.commit()
-    return format_salesrep(salesrep)
-  except Exception as e:
-    db.session.rollback()
-    return jsonify({'error': 'Error in update_salesrep()', 'details': str(e)}), 500
-  finally:
-    db.session.close()
-
-## delete
-def get_salesrep(id):
-  salesrep = SalesRep.query.get(id)
-  if not salesrep:
-    return jsonify({'error': 'SalesRep not found'}), 404
-  return jsonify(format_salesrep(salesrep))
+# def get_salesrep(id):
+  # salesrep = SalesRep.query.get(id)
+  # if not salesrep:
+  #   return jsonify({'error': 'SalesRep not found'}), 404
+  # return jsonify(format_salesrep(salesrep))
 
 def get_salesreps():
   salesreps = SalesRep.query.filter(SalesRep.active_status == 'Y').order_by(SalesRep.timeCreated).all()

@@ -46,49 +46,49 @@ def create_car():
   finally:
     db.session.close()
     
-def delete_car(id):
-  car = db.session.get(Car, id)
-  if not car:
-    return jsonify({"error": "Car not found"}), 404
-  try:
-    db.session.delete(car)
-    db.session.commit()
-    return f'Car (id: {id}) deleted!'
-  except Exception as e:
-    return jsonify({'error': 'Error in delete_car()', 'details': str(e)}), 500
-  finally:
-    db.session.close()
+# def delete_car(id):
+#   car = db.session.get(Car, id)
+#   if not car:
+#     return jsonify({"error": "Car not found"}), 404
+#   try:
+#     db.session.delete(car)
+#     db.session.commit()
+#     return f'Car (id: {id}) deleted!'
+#   except Exception as e:
+#     return jsonify({'error': 'Error in delete_car()', 'details': str(e)}), 500
+#   finally:
+#     db.session.close()
     
-def get_car(id):
-  car = db.session.get(Car, id)
-  if not car:
-    return jsonify({"error": "Car not found"}), 404
+# def get_car(id):
+#   car = db.session.get(Car, id)
+#   if not car:
+#     return jsonify({"error": "Car not found"}), 404
 
-  return {'car': format_car(car)}
+#   return {'car': format_car(car)}
 
-def update_car(id):
-  car = db.session.get(Car, id)
-  if not car:
-    return jsonify({"error": "Car not found"}), 404
+# def update_car(id):
+#   car = db.session.get(Car, id)
+#   if not car:
+#     return jsonify({"error": "Car not found"}), 404
 
-  data = request.json
-  car.vin = data.get('vin', car.vin)
-  car.make = data.get('make', car.make)
-  car.model = data.get('model', car.model)
-  car.year = data.get('year', car.year)
-  car.imageUrl = data.get('imageUrl', car.imageUrl)
-  car.price = data.get('price', car.price)
-  car.miles = data.get('miles', car.miles)
-  car.description = data.get('description', car.description)
-  car.is_sold = data.get('is_sold', car.is_sold)
+#   data = request.json
+#   car.vin = data.get('vin', car.vin)
+#   car.make = data.get('make', car.make)
+#   car.model = data.get('model', car.model)
+#   car.year = data.get('year', car.year)
+#   car.imageUrl = data.get('imageUrl', car.imageUrl)
+#   car.price = data.get('price', car.price)
+#   car.miles = data.get('miles', car.miles)
+#   car.description = data.get('description', car.description)
+#   car.is_sold = data.get('is_sold', car.is_sold)
 
-  try:
-    db.session.commit()
-    return {'Car': format(car)}
-  except Exception as e:
-    return jsonify({'error': 'Error in edit_car()', 'details': str(e)}), 500
-  finally:
-    db.session.close()
+#   try:
+#     db.session.commit()
+#     return {'Car': format(car)}
+#   except Exception as e:
+#     return jsonify({'error': 'Error in edit_car()', 'details': str(e)}), 500
+#   finally:
+#     db.session.close()
     
 def get_unsold_cars(make=None, model=None, year=None, miles=None):
   with app.app_context():

@@ -74,43 +74,43 @@ def create_purchase():
   finally:
     db.session.close()
     
-def delete_purchase(id):
-  purchase = db.session.get(Purchase, id)
-  if not purchase:
-    return jsonify({"error": "Purchase not found"}), 404
-  try:
-    db.session.delete(purchase)
-    db.session.commit()
-    return f'purchase (id: {id}) deleted!'
-  except Exception as e:
-    return jsonify({'error': 'Error in delete_purchase()', 'details': str(e)}), 500
-  finally:
-    db.session.close()
+# def delete_purchase(id):
+#   purchase = db.session.get(Purchase, id)
+#   if not purchase:
+#     return jsonify({"error": "Purchase not found"}), 404
+#   try:
+#     db.session.delete(purchase)
+#     db.session.commit()
+#     return f'purchase (id: {id}) deleted!'
+#   except Exception as e:
+#     return jsonify({'error': 'Error in delete_purchase()', 'details': str(e)}), 500
+#   finally:
+#     db.session.close()
     
-def get_purchase(id):
-  purchase = db.session.get(Purchase, id)
-  if not purchase:
-    return jsonify({"error": "Purchase not found"}), 404
+# def get_purchase(id):
+#   purchase = db.session.get(Purchase, id)
+#   if not purchase:
+#     return jsonify({"error": "Purchase not found"}), 404
 
-  return {'purchase': format_purchase(purchase)}
+#   return {'purchase': format_purchase(purchase)}
 
-def update_purchase(id):
-  purchase = db.session.get(Purchase, id)
-  if not purchase:
-    return jsonify({"error": "Purchase not found"}), 404
+# def update_purchase(id):
+#   purchase = db.session.get(Purchase, id)
+#   if not purchase:
+#     return jsonify({"error": "Purchase not found"}), 404
 
-  data = request.json
-  purchase.sales_rep_id = data.get('sales_rep_id', purchase.sales_rep_id)
-  purchase.customer_id = data.get('customer_id', purchase.customer_id)
-  purchase.car_id = data.get('car_id', purchase.car_id)
+#   data = request.json
+#   purchase.sales_rep_id = data.get('sales_rep_id', purchase.sales_rep_id)
+#   purchase.customer_id = data.get('customer_id', purchase.customer_id)
+#   purchase.car_id = data.get('car_id', purchase.car_id)
 
-  try:
-    db.session.commit()
-    return {'Purchase': format(purchase)}
-  except Exception as e:
-    return jsonify({'error': 'Error in edit_purchase()', 'details': str(e)}), 500
-  finally:
-    db.session.close()
+#   try:
+#     db.session.commit()
+#     return {'Purchase': format(purchase)}
+#   except Exception as e:
+#     return jsonify({'error': 'Error in edit_purchase()', 'details': str(e)}), 500
+#   finally:
+#     db.session.close()
     
 def get_purchases():
   purchases = Purchase.query.order_by(Purchase.time_purchased.asc()).all()
@@ -190,7 +190,6 @@ def get_s_purchases_total():
     total += car.price
   
   return jsonify({'total_purchases': total})
-
 
 def get_c_purchases():
   token = request.cookies.get('auth')

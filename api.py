@@ -8,6 +8,7 @@ from controllers.purchase_controller import *
 from controllers.user_controller import *
 from app import app
 
+'''User APIs'''
 @app.route('/user/', methods = ['PUT', 'PATCH'])
 @user_middleware(['customer', 'sales rep', 'manager'])
 def update_user_api():
@@ -23,18 +24,18 @@ def deactivate_user_api():
 def get_user_api():
   return get_user()
 
-
+'''Manager APIs'''
 @app.route('/managers/', methods = ['POST'])
 def create_manager_api():
   return create_manager()
 
-@app.route('/managers/<id>/', methods = ['DELETE'])
-def delete_manager_api(id):
-  return delete_manager(id)
+# @app.route('/managers/<id>/', methods = ['DELETE'])
+# def delete_manager_api(id):
+#   return delete_manager(id)
 
-@app.route('/managers/<id>/', methods = ['GET'])
-def get_manager_api(id):
-  return get_manager(id)
+# @app.route('/managers/<id>/', methods = ['GET'])
+# def get_manager_api(id):
+#   return get_manager(id)
 
 @app.route('/managers/', methods = ['GET'])
 @user_middleware(['manager'])
@@ -70,21 +71,22 @@ def batch_create_managers_api():
   return batch_create_managers()
 
 
+'''Sales Rep APIs'''
 @app.route('/salesreps/', methods = ['POST'])
 def create_salesrep_api():
   return create_salesrep()
 
-@app.route('/salesreps/<id>/', methods = ['DELETE'])
-def delete_salesrep_api(id):
-  return delete_salesrep(id)
+# @app.route('/salesreps/<id>/', methods = ['DELETE'])
+# def delete_salesrep_api(id):
+#   return delete_salesrep(id)
 
-@app.route('/salesreps/<id>/', methods = ['GET'])
-def get_salesrep_api(id):
-  return get_salesrep(id)
+# @app.route('/salesreps/<id>/', methods = ['GET'])
+# def get_salesrep_api(id):
+#   return get_salesrep(id)
 
-@app.route('/salesreps/<id>/', methods = ['PUT'])
-def update_salesrep_api(id):
-  return update_salesrep(id)
+# @app.route('/salesreps/<id>/', methods = ['PUT'])
+# def update_salesrep_api(id):
+#   return update_salesrep(id)
 
 @app.route('/salesreps/', methods = ['GET'])
 def get_salesreps_api():
@@ -114,28 +116,26 @@ def get_s_purchases_total_api():
 def get_s_cars_api():
   return get_all_cars()
 
-# create a customer
+
+'''Customer APIs'''
 @app.route('/customers/', methods = ['POST'])
 def create_customer_api():
   return create_customer()
 
 # delete a customer
-@app.route('/customers/<id>/', methods = ['DELETE'])
-def delete_customer_api(id):
-  return delete_customer(id)
+# @app.route('/customers/<id>/', methods = ['DELETE'])
+# def delete_customer_api(id):
+#   return delete_customer(id)
 
 # get single customer
-@app.route('/customers/<id>/', methods = ['GET'])
-def get_customer_api(id):
-  return get_customer(id)
+# @app.route('/customers/<id>/', methods = ['GET'])
+# def get_customer_api(id):
+#   return get_customer(id)
 
-
-# get all customers
 @app.route('/customers/', methods = ['GET'])
 def get_customers_api():
   return get_customers()
 
-# create batch customers
 @app.route('/batch-create-customers', methods=['POST'])
 def batch_create_customers_api():
   return batch_create_customers()
@@ -145,21 +145,23 @@ def batch_create_customers_api():
 def get_c_purchases_api():
   return get_c_purchases()
 
+
+'''Purchase APIs'''
 @app.route('/purchases/', methods = ['POST'])
 def create_purchase_api():
   return create_purchase()
 
-@app.route('/purchases/<id>/', methods = ['DELETE'])
-def delete_purchase_api(id):
-  return delete_purchase(id)
+# @app.route('/purchases/<id>/', methods = ['DELETE'])
+# def delete_purchase_api(id):
+#   return delete_purchase(id)
 
-@app.route('/purchases/<id>/', methods = ['GET'])
-def get_purchase_api(id):
-  return get_purchase(id)
+# @app.route('/purchases/<id>/', methods = ['GET'])
+# def get_purchase_api(id):
+#   return get_purchase(id)
 
-@app.route('/purchases/<id>/', methods = ['PUT'])
-def update_purchase_api(id):
-  return update_purchase(id)
+# @app.route('/purchases/<id>/', methods = ['PUT'])
+# def update_purchase_api(id):
+#   return update_purchase(id)
 
 # get all purchases
 @app.route('/purchases/', methods = ['GET'])
@@ -171,27 +173,27 @@ def get_purchases_api():
 def batch_create_purchases_api():
   return batch_create_purchases()
 
-# create a car
+
+'''Car APIs'''
 @app.route('/cars/', methods = ['POST'])
 def create_car_api():
   return create_car()
   
 # delete a car
-@app.route('/cars/<id>/', methods = ['DELETE'])
-def delete_car_api(id):
-  return delete_car(id)
+# @app.route('/cars/<id>/', methods = ['DELETE'])
+# def delete_car_api(id):
+#   return delete_car(id)
 
 # get single car
-@app.route('/cars/<id>/', methods = ['GET'])
-def get_car_api(id):
-  return get_car(id)
+# @app.route('/cars/<id>/', methods = ['GET'])
+# def get_car_api(id):
+#   return get_car(id)
 
 # edit a car
-@app.route('/cars/<id>/', methods = ['PUT'])
-def update_car_api(id):
-  return update_car(id)
+# @app.route('/cars/<id>/', methods = ['PUT'])
+# def update_car_api(id):
+#   return update_car(id)
   
-# get all unsold cars
 @app.route('/cars/', methods = ['GET'])
 def get_unsold_cars_api():
   make = request.args.get('make')
@@ -200,16 +202,18 @@ def get_unsold_cars_api():
   miles = request.args.get('miles')
   return get_unsold_cars(make, model, year, miles)
 
-# create batch cars
 @app.route('/batch-create-cars/', methods=['POST'])
 def batch_create_cars_api():
   return batch_create_cars()
 
-# get all employees
+
+'''Employee APIs'''
 @app.route('/employees/', methods = ['GET'])
 def get_employees_api():
   return get_employees()
 
+
+'''Authentation APIs'''
 @app.route('/login/', methods = ['POST'])
 def login_api():
   return login()
@@ -222,13 +226,13 @@ def logout_api():
 def create_new_customer_api():
   return create_new_customer()
 
-#adminpage for testing
+
+'''Testing APIs'''
 @app.route('/adminpage/', methods = ['GET'])
 @user_middleware(['manager'])
 def helloA():
   return "Hello admin!"
 
-# define a route for testing
 @app.route('/')
 def hello():
   return "Shhh, ur not supposed to be here!"

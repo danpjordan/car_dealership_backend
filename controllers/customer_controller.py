@@ -49,24 +49,24 @@ def create_customer():
   finally:
     db.session.close()
 
-def delete_customer(id):
-  customer = db.session.get(Customer, id)
-  if not customer:
-    return jsonify({"error": "Customer not found"}), 404
-  try:
-    db.session.delete(customer)
-    db.session.commit()
-    return f'Customer (id: {id}) deleted!'
-  except Exception as e:
-    return jsonify({'error': 'Error in delete_customer()', 'details': str(e)}), 500
-  finally:
-    db.session.close()
+# def delete_customer(id):
+#   customer = db.session.get(Customer, id)
+#   if not customer:
+#     return jsonify({"error": "Customer not found"}), 404
+#   try:
+#     db.session.delete(customer)
+#     db.session.commit()
+#     return f'Customer (id: {id}) deleted!'
+#   except Exception as e:
+#     return jsonify({'error': 'Error in delete_customer()', 'details': str(e)}), 500
+#   finally:
+#     db.session.close()
 
-def get_customer(id):
-  customer = db.session.get(Customer, id)
-  if not customer:
-    return jsonify({"error": "Customer not found"}), 404
-  return format_customer(customer)
+# def get_customer(id):
+#   customer = db.session.get(Customer, id)
+#   if not customer:
+#     return jsonify({"error": "Customer not found"}), 404
+#   return format_customer(customer)
 
 def get_customers():
   customers = Customer.query.order_by(Customer.timeCreated).all()
