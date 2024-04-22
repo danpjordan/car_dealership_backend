@@ -56,3 +56,14 @@ def deactivate_user():
     return jsonify({'error': 'Error in deactivate_user()', 'details': str(e)}), 500
   finally:
     db.session.close()
+    
+def get_user():
+  token = request.cookies.get('auth')
+  payload = jwt.decode(token, JWT_SECRETKEY, algorithms=['HS256'])
+  user_id = payload.get('userId')
+  user = db.session.get(User, user_id)
+  
+  if user is None:
+    return jsonify({'error': 'Manager not found'}), 404
+  return jsonify(format_user(user))
+

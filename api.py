@@ -9,12 +9,20 @@ from controllers.user_controller import *
 from app import app
 
 @app.route('/user/', methods = ['PUT', 'PATCH'])
+@user_middleware(['customer', 'sales rep', 'manager'])
 def update_user_api():
   return update_user()
 
 @app.route('/user/deactivate', methods = ['GET'])
+@user_middleware(['customer', 'sales rep', 'manager'])
 def deactivate_user_api():
   return deactivate_user()
+
+@app.route('/user/', methods = ['GET'])
+@user_middleware(['customer', 'sales rep', 'manager'])
+def get_user_api():
+  return get_user()
+
 
 @app.route('/managers/', methods = ['POST'])
 def create_manager_api():
@@ -55,7 +63,6 @@ def get_m_cars_api():
 @app.route('/batch-create-managers/', methods=['POST'])
 def batch_create_managers_api():
   return batch_create_managers()
-
 
 @app.route('/salesreps/', methods = ['POST'])
 def create_salesrep_api():

@@ -50,6 +50,7 @@ def create_manager():
   finally:
     db.session.close()
 
+#delete
 def delete_manager(id):
   manager = Manager.query.get(id)
   if manager is None:
@@ -64,6 +65,7 @@ def delete_manager(id):
   finally:
     db.session.close()
 
+# delete
 def get_manager(id):
   manager = Manager.query.get(id)
   if manager is None:
