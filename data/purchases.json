@@ -2,21 +2,106 @@
   {
     "sales_rep_id":481384,
     "customer_id":481924,
-    "car_id":1028
+    "car_id":8428
+  },
+  {
+    "sales_rep_id":481384,
+    "customer_id":928434,
+    "car_id":5192
   },
   {
     "sales_rep_id":192384,
-    "customer_id":928434,
-    "car_id":3018
+    "customer_id":576728,
+    "car_id":9284
+  },
+  {
+    "sales_rep_id":192384,
+    "customer_id":194792,
+    "car_id":6820
   },
   {
     "sales_rep_id":682045,
+    "customer_id":194792,
+    "car_id":1256
+  },
+  {
+    "sales_rep_id":682045,
+    "customer_id":981234,
+    "car_id":4825
+  },
+  {
+    "sales_rep_id":801824,
+    "customer_id":567890,
+    "car_id":9182
+  },
+  {
+    "sales_rep_id":801824,
+    "customer_id":123456,
+    "car_id":1982
+  },
+  {
+    "sales_rep_id":801824,
+    "customer_id":789012,
+    "car_id":4820
+  },
+  {
+    "sales_rep_id":421593,
     "customer_id":928434,
+    "car_id":5982
+  },
+  {
+    "sales_rep_id":801824,
+    "customer_id":928434,
+    "car_id":9275
+  },
+  {
+    "sales_rep_id":801824,
+    "customer_id":123456,
     "car_id":5910
   },
   {
     "sales_rep_id":481384,
-    "customer_id":576728,
-    "car_id":8428
+    "customer_id":123456,
+    "car_id":1028
+  },
+  {
+    "sales_rep_id":481384,
+    "customer_id":789012,
+    "car_id":2058
+  },
+  {
+    "sales_rep_id":421593,
+    "customer_id":345678,
+    "car_id":4019
+  },
+  {
+    "sales_rep_id":421593,
+    "customer_id":890123,
+    "car_id":3018
+  },
+  {
+    "sales_rep_id":682045,
+    "customer_id":345123,
+    "car_id":9385
+  },
+  {
+    "sales_rep_id":682045,
+    "customer_id":345123,
+    "car_id":8492
+  },
+  {
+    "sales_rep_id":682045,
+    "customer_id":345123,
+    "car_id":4813
+  },
+  {
+    "sales_rep_id":192384,
+    "customer_id":481924,
+    "car_id":8375
+  },
+  {
+    "sales_rep_id":192384,
+    "customer_id":890123,
+    "car_id":6850
   }
 ]

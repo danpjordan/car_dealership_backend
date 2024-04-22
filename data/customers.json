@@ -31,5 +31,85 @@
     "phone": "184-491-2849",
     "usr_id":194792,
     "active_status":"N"
+  },
+  {
+    "name": "Michael Johnson",
+    "username": "michaelj",
+    "password": "mj456",
+    "email": "michael.johnson@gmail.com",
+    "phone": "567-890-1234",
+    "usr_id": 981234
+  },
+  {
+    "name": "Emily Roberts",
+    "username": "emilyr",
+    "password": "er789",
+    "email": "emily.roberts@hotmail.com",
+    "phone": "345-678-9012",
+    "usr_id": 567890
+  },
+  {
+    "name": "David Smith",
+    "username": "davids",
+    "password": "ds321",
+    "email": "david.smith@outlook.com",
+    "phone": "789-012-3456",
+    "usr_id": 123456
+  },
+  {
+    "name": "Jessica Brown",
+    "username": "jessicab",
+    "password": "jb654",
+    "email": "jessica.brown@yahoo.com",
+    "phone": "901-234-5678",
+    "usr_id": 234567
+  },
+  {
+    "name": "Matthew Taylor",
+    "username": "matthewt",
+    "password": "mt987",
+    "email": "matthew.taylor@gmail.com",
+    "phone": "123-456-7890",
+    "usr_id": 789012
+  },
+  {
+    "name": "Rachel Green",
+    "username": "rachelg",
+    "password": "rg246",
+    "email": "rachel.green@gmail.com",
+    "phone": "678-901-2345",
+    "usr_id": 345678
+  },
+  {
+    "name": "Brandon Lee",
+    "username": "brandonl",
+    "password": "bl135",
+    "email": "brandon.lee@hotmail.com",
+    "phone": "890-123-4567",
+    "usr_id": 890123
+  },
+  {
+    "name": "Amanda Harris",
+    "username": "amandah",
+    "password": "ah789",
+    "email": "amanda.harris@yahoo.com",
+    "phone": "456-789-0123",
+    "usr_id": 901234
+  },
+  {
+    "name": "Daniel Brown",
+    "username": "danielb",
+    "password": "db246",
+    "email": "daniel.brown@gmail.com",
+    "phone": "789-012-3456",
+    "usr_id": 345123
+  },
+  {
+    "name": "Lauren Taylor",
+    "username": "laurent",
+    "password": "lt135",
+    "email": "lauren.taylor@yahoo.com",
+    "phone": "234-567-8901",
+    "usr_id": 678901
   }
 ]
