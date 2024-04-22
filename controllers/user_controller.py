@@ -40,3 +40,19 @@ def update_user():
     return jsonify({'error': 'Error in update_user()', 'details': str(e)}), 500
   finally:
     db.session.close()
+    
+def deactivate_user():
+  token = request.cookies.get('auth')
+  payload = jwt.decode(token, JWT_SECRETKEY, algorithms=['HS256'])
+  user_id = payload.get('userId')
+  user = db.session.get(User, user_id)
+
+  user.active_status = 'N'
+    
+  try:
+    db.session.commit()
+    return {'Deactivated user': format_user(user)}
+  except Exception as e:
+    return jsonify({'error': 'Error in deactivate_user()', 'details': str(e)}), 500
+  finally:
+    db.session.close()

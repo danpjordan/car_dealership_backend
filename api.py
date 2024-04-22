@@ -10,8 +10,11 @@ from app import app
 
 @app.route('/user/', methods = ['PUT', 'PATCH'])
 def update_user_api():
-  print("test")
   return update_user()
+
+@app.route('/user/deactivate', methods = ['GET'])
+def deactivate_user_api():
+  return deactivate_user()
 
 @app.route('/managers/', methods = ['POST'])
 def create_manager_api():

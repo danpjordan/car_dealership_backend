@@ -54,11 +54,13 @@ def login():
   try:
     username = request.json.get('username')
     user=User.query.filter(
-        User.username==username,
-        User.active_status=='Y'
+        User.username==username
         ).first()
     if not user:
       return make_response({'error': 'invalid username or password'}, 400)
+    if user.active_status == 'N':
+      return make_response({'error': 'inactive account, please contact staff'}, 400)
+    
     if not bcrypt.checkpw(
       request.json.get('password').encode('utf-8'),
       user.password.encode('utf-8')
