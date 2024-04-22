@@ -50,25 +50,6 @@ def create_manager():
   finally:
     db.session.close()
 
-# def delete_manager(id):
-#   manager = Manager.query.get(id)
-#   if manager is None:
-#     return jsonify({'error': 'Manager not found'}), 404
-#   db.session.delete(manager)
-#   try:
-#     db.session.commit()
-#     return jsonify({'success': 'Manager deleted'})
-#   except Exception as e:
-#     db.session.rollback()
-#     return jsonify({'error': 'Error in delete_manager()', 'details': str(e)}), 500
-#   finally:
-#     db.session.close()
-
-# def get_manager(id):
-#   manager = Manager.query.get(id)
-#   if manager is None:
-#     return jsonify({'error': 'Manager not found'}), 404
-#   return jsonify(format_manager(manager))
 
 def get_managers():
   managers = Manager.query.order_by(Manager.timeCreated).all()
