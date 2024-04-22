@@ -53,17 +53,19 @@ def create_purchase():
   customer_id = payload.get('userId')
   sales_rep_id = data.get('salesrep_id')
   car_id = data.get('car_id')
-
+  
+  customer = db.session.get(Customer, customer_id)
+  if not customer:
+    return jsonify({'error': 'Must be a customer'}), 404
+  
   purchase = Purchase(sales_rep_id=sales_rep_id, customer_id=customer_id, car_id=car_id)
   db.session.add(purchase)
-    
+
   try:
     db.session.commit()
-    
     car = Car.query.get(car_id)
     car.is_sold = 'Y'
     db.session.commit()
-    
     return format_purchase(purchase)
   
   except Exception as e:
