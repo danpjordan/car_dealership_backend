@@ -17,6 +17,12 @@ def format_car(car):
     "is_sold" : car.is_sold
     }
   
+def get_car(id):
+  car = db.session.get(Car, id)
+  if not car:
+    return jsonify({"error": "Car not found"}), 404
+  return {'car': format_car(car)}
+  
 def create_car():
   data = request.json
   if ('vin') not in data:

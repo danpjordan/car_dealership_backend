@@ -148,6 +148,10 @@ def get_unsold_cars_api():
 def batch_create_cars_api():
   return batch_create_cars()
 
+@app.route('/cars/<id>/', methods = ['GET'])
+def get_car_api(id):
+  return get_car(id)
+
 
 '''Employee APIs'''
 @app.route('/employees/', methods = ['GET'])

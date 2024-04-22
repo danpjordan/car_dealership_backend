@@ -1,4 +1,4 @@
-TODO
+APIs
 \customer\purchases - show their purchases
 
 \salesrep\customers\ - filter by !archived
@@ -12,6 +12,16 @@ TODO
 \manager\purchases\total
 \manager\customers - show all customers 
 
-\user [patch] edit user data -- changed to patch
 \deactivate - set user to deactivate
-add cars_purchased count to manager\customers
+
+TODO
+add sales rep on customer/purchase page
+add customer on sales rep/purchase page
+add both sales rep and customer to manager/purchase page
+fix "customers" (should be employees) ontop of manager/salesrep page
+add employee names to manager/salesrep page
+add a way to add cars to database
+add a way to deactivate account in profile`
+add a filter for /cars
+display cars_purchased in manager/customers
+main page change "new" to "used
