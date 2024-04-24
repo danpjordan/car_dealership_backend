@@ -138,6 +138,8 @@
     "make": "Kia",
     "model": "Optima",
     "year": 2016,
+    "price": 11900,
+    "miles": 45000,
     "imageUrl": "https://i.imgur.com/BBtjbgI.jpg",
     "is_sold":"Y"
   },
