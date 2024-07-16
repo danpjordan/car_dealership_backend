@@ -1,3 +1,5 @@
+This is the backend and api's for a mock car dealership
+
 1) set up environment
 python3 -m venv env
 
